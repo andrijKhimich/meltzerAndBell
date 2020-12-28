@@ -3,7 +3,14 @@ $white: #ffffff;
 $black: #191919;
 $textColor: $black;
 $primary: #8B0C1D;
+$primaryDark: #6d0916;
+
+$overlay: rgba(#131314, .38);
+
 // timing
 $hover-duration: .4s;
 $duration: .8s;
 $timing: cubic-bezier(.7, 0, .3, 1);
+// fonts
+$fontPrimary: "Poppins", Arial, Helvetica, sans-serif;
+$fontHeading: "CormorantInfant", Arial, Helvetica, sans-serif;

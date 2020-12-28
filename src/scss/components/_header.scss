@@ -4,17 +4,26 @@
   top: 0;
   left: 0;
   width: 100%;
-  border-bottom: 1px solid $white;
   color: $white;
+  z-index: 10;
+  font-family: $fontHeading;
 
-  &-row {
+  &__row {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 16px 0 14px 0;
+    border-bottom: 1px solid rgba($white, .4);
   }
 
-  &-contacts {
+  &-contact {
+    font-size: 20px;
     line-height: 1.2em;
+
+    p,
+    a {
+      line-height: 1.2em;
+    }
   }
 }
 
@@ -27,5 +36,9 @@
     font-size: 18px;
     line-height: 1.22em;
     color: $white;
+    background-color: transparent;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
   }
 }
