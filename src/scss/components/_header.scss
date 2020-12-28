@@ -1,1 +1,31 @@
 // header styles
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid $white;
+  color: $white;
+
+  &-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-contacts {
+    line-height: 1.2em;
+  }
+}
+
+.logo {
+  max-width: 430px;
+}
+
+.menu {
+  &-btn {
+    font-size: 18px;
+    line-height: 1.22em;
+    color: $white;
+  }
+}
