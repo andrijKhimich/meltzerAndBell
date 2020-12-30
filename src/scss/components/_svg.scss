@@ -1,0 +1,37 @@
+.svg {
+  &-star {
+    width: 16px;
+    height: 16px;
+    fill: $primary;
+  }
+
+  &-arrow_left {
+    width: 27px;
+    height: 27px;
+    position: relative;
+    left: 0;
+    transition: fill $hover-duration $timing, left $hover-duration $timing, right $hover-duration $timing;
+  }
+
+  &-arrow_right {
+    width: 27px;
+    height: 27px;
+    position: relative;
+    right: 0;
+    transition: fill $hover-duration $timing, left $hover-duration $timing, right $hover-duration $timing;
+  }
+
+  &-icon {
+    width: 50px;
+    height: 50px;
+    fill: $white;
+    transition: fill $hover-duration $timing;
+  }
+
+  &-social {
+    width: 20px;
+    height: 20px;
+    fill: $white;
+    transition: fill $hover-duration $timing;
+  }
+}

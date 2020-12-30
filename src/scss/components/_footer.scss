@@ -1,1 +1,55 @@
 // footer styles
+.footer {
+  background-color: $primary;
+  padding: 100px 0;
+  color: $white;
+
+  &__title {
+    margin-bottom: 40px;
+  }
+}
+
+.footer-address {
+  display: flex;
+  margin-bottom: 60px;
+  &__box {
+    flex: 0 0 50%;
+    padding-right: 80px;
+
+    .more-link {
+      color: $white;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 5px;
+  }
+}
+
+.social-list {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__link {
+    &:hover {
+      .svg-social {
+        fill: $black;
+      }
+    }
+  }
+}
+
+.map {
+  width: 400px;
+  height: 345px;
+}

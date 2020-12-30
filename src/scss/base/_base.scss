@@ -3,12 +3,6 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 body {
   font-size: 14px;
   font-family: $fontPrimary;
@@ -50,6 +44,11 @@ h6 {
   margin: 0;
   font-weight: 600;
   font-family: $fontHeading;
+
+  span {
+    color: $primary;
+    display: block;
+  }
 }
 
 h1,
@@ -71,10 +70,12 @@ h3 {
 h4 {
   font-size: 25px;
   line-height: 1.16em;
+  text-transform: uppercase;
 }
 
 h5 {
-  font-size: 28px;
+  font-size: 20px;
+  line-height: 1.2em;
 }
 
 .title-1 {
@@ -274,6 +275,103 @@ textarea {
   @include rh(1024) {
     &:hover {
       background-color: $primaryDark;
+    }
+  }
+}
+
+.section {
+  &__title {
+    position: relative;
+    white-space: nowrap;
+    margin-bottom: 67px;
+    display: inline-block;
+    &::before {
+      content: attr(data-title);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+      font-size: 150px;
+      line-height: .39em;
+      font-family: $fontHeading;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: $black;
+      text-transform: uppercase;
+      opacity: .2;
+      white-space: nowrap;
+    }
+  }
+
+  &__content {
+    p {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.more-link {
+  position: relative;
+  display: inline-block;
+  font-family: $fontHeading;
+  font-size: 16px;
+  line-height: 1em;
+  color: $primary;
+  padding-right: 40px;
+
+  &:before {
+    content: "";
+    width: 27px;
+    height: 18px;
+    background-image: url(../img/svg/arrow.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: transform $hover-duration $timing;
+  }
+
+  @include rh(1024) {
+    &:hover {
+      &::before {
+        transform: translate(10px, 0);
+      }
+    }
+  }
+}
+
+.ranking {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+}
+
+.square-link {
+  width: 61px;
+  height: 61px;
+  border: 1px solid $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  background-color: $white;
+  transition: background-color $hover-duration $timing;
+
+  &:hover {
+    background-color: $primary;
+
+    .svg-arrow_right {
+      fill: $white;
     }
   }
 }
