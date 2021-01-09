@@ -1,0 +1,60 @@
+.form {
+  &-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 -30px;
+
+    .form-control {
+      width: 100%;
+      max-width: 50%;
+      padding: 0 30px;
+    }
+  }
+
+  &-control {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  &-input {
+    border-bottom: 1px solid $black;
+    transition: border-color $hover-duration $timing;
+    width: 100%;
+    background-color: transparent;
+    padding: 5px 0 20px 0;
+    color: $black;
+
+    &:focus {
+      border-color: $primary;
+    }
+
+    &::-webkit-input-placeholder {
+      font-family: inherit;
+      font-size: 14px;
+      color: $black;
+      text-transform: uppercase;
+    }
+
+    &::-moz-placeholder {
+      font-family: inherit;
+      font-size: 14px;
+      color: $black;
+      text-transform: uppercase;
+    }
+
+    &:-ms-input-placeholder {
+      font-family: inherit;
+      font-size: 14px;
+      color: $black;
+      text-transform: uppercase;
+    }
+
+    &::placeholder {
+      font-family: inherit;
+      font-size: 14px;
+      color: $black;
+      text-transform: uppercase;
+    }
+  }
+}

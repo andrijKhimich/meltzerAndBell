@@ -1,461 +1,500 @@
-const humburger = $(".js-humburger");
-const headerMenu = $(".menu");
-const scrollBtn = $(".scroll-btn");
-const header = $(".header");
-const logoImg = $(".logo img");
+const humburger = document.querySelector(".humburger");
+const roundText = document.querySelector("#roundText");
+const testimonialsSlider = document.querySelector('#testimonialsSlider');
+const caseSlider = document.querySelector('#caseSlider');
+const blogSlider = document.querySelector('#blogSlider');
+const practiceSlider = document.querySelector('#practiceSlider');
+// function openMenu() {
+//   humburger.classList.add("open");
+//   fadeIn(nav);
+//   setTimeout(function () {
+//     navigationList.classList.add("open");
+//   }, 800);
+// }
 
-function setInnerHeader() {
-  logoImg.attr("src", logoBlackUrl);
-  header.addClass("header_inner");
-}
+// function closeMenu() {
+//   humburger.classList.remove("open");
+//   navigationList.classList.remove("open");
+//   fadeOut(nav);
+// }
 
-function setHomeHeader() {
-  logoImg.attr("src", logoMainUrl);
-  header.removeClass("header_inner");
-}
-
-$('#map')[0] ? initMap() : null;
-
-function initMap() {
-  var mapOptions = {
-    zoom: 14,
-    center: new google.maps.LatLng(26.114650055305212, -80.14133413459079),
-    disableDefaultUI: true,
-    styles: [{
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#e9e9e9"
-          },
-          {
-            "lightness": 17
-          }
-        ]
-      },
-      {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#f5f5f5"
-          },
-          {
-            "lightness": 20
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [{
-            "color": "#ffffff"
-          },
-          {
-            "lightness": 17
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [{
-            "color": "#ffffff"
-          },
-          {
-            "lightness": 29
-          },
-          {
-            "weight": 0.2
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#ffffff"
-          },
-          {
-            "lightness": 18
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#ffffff"
-          },
-          {
-            "lightness": 16
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#f5f5f5"
-          },
-          {
-            "lightness": 21
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#dedede"
-          },
-          {
-            "lightness": 21
-          }
-        ]
-      },
-      {
-        "elementType": "labels.text.stroke",
-        "stylers": [{
-            "visibility": "on"
-          },
-          {
-            "color": "#ffffff"
-          },
-          {
-            "lightness": 16
-          }
-        ]
-      },
-      {
-        "elementType": "labels.text.fill",
-        "stylers": [{
-            "saturation": 36
-          },
-          {
-            "color": "#333333"
-          },
-          {
-            "lightness": 40
-          }
-        ]
-      },
-      {
-        "elementType": "labels.icon",
-        "stylers": [{
-          "visibility": "off"
-        }]
-      },
-      {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#f2f2f2"
-          },
-          {
-            "lightness": 19
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "elementType": "geometry.fill",
-        "stylers": [{
-            "color": "#fefefe"
-          },
-          {
-            "lightness": 20
-          }
-        ]
-      },
-      {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [{
-            "color": "#fefefe"
-          },
-          {
-            "lightness": 17
-          },
-          {
-            "weight": 1.2
-          }
-        ]
-      }
-    ]
+// rounded words on firs screen
+function circularWords(words) {
+  const degreeToRadian = (angle) => {
+    return angle * (Math.PI / 180);
   };
-  var mapElement = document.getElementById('map')
-  var map = new google.maps.Map(mapElement, mapOptions);
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(26.114611520965816, -80.14121611739628),
-    map: map,
-    title: 'Meltzer and Bell, P.A',
-    icon: '../img/svg/map-point.svg'
+
+  const radius = 80;
+  const diameter = radius * 2;
+
+  const circle = words;
+  circle.style.width = `${diameter}px`;
+  circle.style.height = `${diameter}px`;
+
+  const text = circle.innerText;
+  const characters = text.split("");
+  circle.innerText = null;
+
+  const startAngle = -90;
+  const endAngle = 270;
+  const angleRange = endAngle - startAngle;
+
+  const deltaAngle = angleRange / characters.length;
+  let currentAngle = startAngle;
+
+  characters.forEach((char, index) => {
+    const charElement = document.createElement("span");
+    charElement.innerText = char;
+    const xPos = radius * (1 + Math.cos(degreeToRadian(currentAngle)));
+    const yPos = radius * (1 + Math.sin(degreeToRadian(currentAngle)));
+
+    const transform = `translate(${xPos}px, ${yPos}px)`;
+    const rotate = `rotate(${index * deltaAngle}deg)`;
+    charElement.style.transform = `${transform} ${rotate}`;
+
+    currentAngle += deltaAngle;
+    circle.appendChild(charElement);
   });
 }
 
-// function initMap() {
-
-//   let mapPos = {
-//     lat: 51.528414,
-//     lng: -0.275301
-//   };
-//   let markerPos = {
-//     lat: 51.528414,
-//     lng: -0.275301
-//   };
-
-//   const map = new google.maps.Map(document.getElementById('contacts-map'), {
-//     zoom: 16,
-//     center: mapPos,
-//     disableDefaultUI: false,
-//     styles: [{
-//         "featureType": "water",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#e9e9e9"
-//           },
-//           {
-//             "lightness": 17
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "landscape",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#f5f5f5"
-//           },
-//           {
-//             "lightness": 20
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "road.highway",
-//         "elementType": "geometry.fill",
-//         "stylers": [{
-//             "color": "#ffffff"
-//           },
-//           {
-//             "lightness": 17
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "road.highway",
-//         "elementType": "geometry.stroke",
-//         "stylers": [{
-//             "color": "#ffffff"
-//           },
-//           {
-//             "lightness": 29
-//           },
-//           {
-//             "weight": 0.2
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "road.arterial",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#ffffff"
-//           },
-//           {
-//             "lightness": 18
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "road.local",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#ffffff"
-//           },
-//           {
-//             "lightness": 16
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "poi",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#f5f5f5"
-//           },
-//           {
-//             "lightness": 21
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "poi.park",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#dedede"
-//           },
-//           {
-//             "lightness": 21
-//           }
-//         ]
-//       },
-//       {
-//         "elementType": "labels.text.stroke",
-//         "stylers": [{
-//             "visibility": "on"
-//           },
-//           {
-//             "color": "#ffffff"
-//           },
-//           {
-//             "lightness": 16
-//           }
-//         ]
-//       },
-//       {
-//         "elementType": "labels.text.fill",
-//         "stylers": [{
-//             "saturation": 36
-//           },
-//           {
-//             "color": "#333333"
-//           },
-//           {
-//             "lightness": 40
-//           }
-//         ]
-//       },
-//       {
-//         "elementType": "labels.icon",
-//         "stylers": [{
-//           "visibility": "off"
-//         }]
-//       },
-//       {
-//         "featureType": "transit",
-//         "elementType": "geometry",
-//         "stylers": [{
-//             "color": "#f2f2f2"
-//           },
-//           {
-//             "lightness": 19
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "administrative",
-//         "elementType": "geometry.fill",
-//         "stylers": [{
-//             "color": "#fefefe"
-//           },
-//           {
-//             "lightness": 20
-//           }
-//         ]
-//       },
-//       {
-//         "featureType": "administrative",
-//         "elementType": "geometry.stroke",
-//         "stylers": [{
-//             "color": "#fefefe"
-//           },
-//           {
-//             "lightness": 17
-//           },
-//           {
-//             "weight": 1.2
-//           }
-//         ]
-//       }
-//     ]
-//   });
-
-//   const markerIcon = {
-//     url: '/wp-content/themes/stoneworld/assets/img/location.svg',
-//     scaledSize: new google.maps.Size(60, 60),
-//     origin: new google.maps.Point(0, 0),
-//     anchor: new google.maps.Point(30, 60)
-//   };
-
-//   const marker = new google.maps.Marker({
-//     position: markerPos,
-//     map: map,
-//     icon: markerIcon
-//   });
-// }
-
 function showContent() {
-  $(".main-wrapper").removeClass("js-fadeIn");
+  document.querySelector(".main-wrapper").classList.remove("js-fadeIn");
 }
 
-$(document).ready(function () {
-  // if ($('.inner-page').length > 0) {
-  //   setInnerHeader();
-  // } else {
-  //   setHomeHeader();
-  // }
-  showContent();
+document.addEventListener("DOMContentLoaded", function (e) {
 
-  // humburger.click(function () {
-  //   if ($(this).hasClass('open')) {
+  const accordionWrapper = document.querySelector('.sidebar-accordion__wrapper');
+  const accordionLink = accordionWrapper.querySelectorAll('.sidebar-accordion__link');
+
+  function accordionToggle(e) {
+    e.preventDefault();
+    const accordionContent = this.nextSibling.nextSibling;
+    const accordionPlus = this;
+
+    console.log(accordionContent);
+    if (accordionContent.classList.contains('show')) {
+      this.classList.remove("minus");
+      accordionContent.classList.remove("show");
+    } else {
+      this.classList.add("minus");
+      accordionContent.classList.add("show");
+    }
+  }
+
+  for (var i = 0; i < accordionLink.length; i++) {
+    accordionLink[i].addEventListener("click", accordionToggle);
+  }
+
+  showContent();
+  if (roundText) {
+    circularWords(roundText);
+  }
+
+  // if (partnersSlide) {
+  initPartnersSlider();
+  // }
+
+  initTestimonialsSlider();
+  initPressSlider();
+  initCaseSlider();
+  initBlogSlider();
+  initPracticeSlider();
+
+  // humburger.addEventListener("click", function () {
+  //   if (this.classList.contains("open")) {
   //     closeMenu();
   //   } else {
   //     openMenu();
   //   }
+  // });
+
+
+  window.addEventListener('resize', function (event) {
+    initPartnersSlider();
+    initPressSlider();
+  });
+
+
+
+  function initPartnersSlider() {
+    const partnerSlider = document.querySelector('#partnerSlider.slick-slider');
+    if (window.innerWidth < 991 && !partnerSlider) {
+      $('#partnerSlider').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        dots: false,
+        arrows: false,
+        infinite: false,
+        autoplaySpeed: 10000,
+        mobileFirst: true,
+        responsive: [{
+            breakpoint: 991,
+            settings: 'unslick'
+          },
+          {
+            breakpoint: 180,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 575,
+            settings: {
+              slidesToShow: 4
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 6
+            }
+          }
+        ]
+      });
+    }
+  }
+
+  function initPressSlider() {
+    const partnerSlider = document.querySelector('.press__slider.slick-slider');
+    if (window.innerWidth < 991 && !partnerSlider) {
+      $('#pressSlider').slick({
+        // slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        dots: false,
+        arrows: false,
+        infinite: false,
+        autoplaySpeed: 10000,
+        mobileFirst: true,
+        responsive: [{
+            breakpoint: 991,
+            settings: 'unslick'
+          },
+          {
+            breakpoint: 180,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 575,
+            settings: {
+              slidesToShow: 4
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 6
+            }
+          }
+        ]
+      });
+    }
+  }
+
+
+  $('#map')[0] ? initMap() : null;
+
+  function initMap() {
+    var mapOptions = {
+      zoom: 14,
+      center: new google.maps.LatLng(26.114650055305212, -80.14133413459079),
+      disableDefaultUI: true,
+      styles: [{
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#e9e9e9"
+            },
+            {
+              "lightness": 17
+            }
+          ]
+        },
+        {
+          "featureType": "landscape",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#f5f5f5"
+            },
+            {
+              "lightness": 20
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [{
+              "color": "#ffffff"
+            },
+            {
+              "lightness": 17
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+              "color": "#ffffff"
+            },
+            {
+              "lightness": 29
+            },
+            {
+              "weight": 0.2
+            }
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#ffffff"
+            },
+            {
+              "lightness": 18
+            }
+          ]
+        },
+        {
+          "featureType": "road.local",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#ffffff"
+            },
+            {
+              "lightness": 16
+            }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#f5f5f5"
+            },
+            {
+              "lightness": 21
+            }
+          ]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#dedede"
+            },
+            {
+              "lightness": 21
+            }
+          ]
+        },
+        {
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+              "visibility": "on"
+            },
+            {
+              "color": "#ffffff"
+            },
+            {
+              "lightness": 16
+            }
+          ]
+        },
+        {
+          "elementType": "labels.text.fill",
+          "stylers": [{
+              "saturation": 36
+            },
+            {
+              "color": "#333333"
+            },
+            {
+              "lightness": 40
+            }
+          ]
+        },
+        {
+          "elementType": "labels.icon",
+          "stylers": [{
+            "visibility": "off"
+          }]
+        },
+        {
+          "featureType": "transit",
+          "elementType": "geometry",
+          "stylers": [{
+              "color": "#f2f2f2"
+            },
+            {
+              "lightness": 19
+            }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry.fill",
+          "stylers": [{
+              "color": "#fefefe"
+            },
+            {
+              "lightness": 20
+            }
+          ]
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+              "color": "#fefefe"
+            },
+            {
+              "lightness": 17
+            },
+            {
+              "weight": 1.2
+            }
+          ]
+        }
+      ]
+    };
+    var mapElement = document.getElementById('map')
+    var map = new google.maps.Map(mapElement, mapOptions);
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(26.114611520965816, -80.14121611739628),
+      map: map,
+      title: 'Meltzer and Bell, P.A',
+      icon: '../img/svg/map-point.svg'
+    });
+  }
 });
 
-// slow scroll to id
+function initTestimonialsSlider() {
+  const counter = document.querySelector('#testimonialsSliderInfo');
+  $(testimonialsSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+    if (!slick.$dots) {
+      return;
+    }
+    var i = (currentSlide ? currentSlide : 0) + 1;
+    counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
+  });
 
-//   scrollBtn.click(function (e) {
-//     e.preventDefault();
-//     let link = $($(this).attr('href'))
-//     $('html, body').animate({
-//       scrollTop: link.offset().top
-//     }, 1000);
-//   });
+  $(testimonialsSlider).slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    infinite: false,
+    speed: 800,
+    fade: true,
+    arrows: true,
+    prevArrow: $('#testimonialsPrev'),
+    nextArrow: $('#testimonialsNext'),
+    responsive: [{
+      breakpoint: 991,
+      settings: {
+        adaptiveHeight: true
+      }
+    }]
+  });
+}
 
-//   showOnScroll($(window).scrollTop());
+function initPracticeSlider() {
+  const counter = document.querySelector('#practiceSliderInfo');
+  $(practiceSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+    if (!slick.$dots) {
+      return;
+    }
+    var i = (currentSlide ? currentSlide : 0) + 1;
+    counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
+  });
 
-//   $(window).scroll(function () {
-//     const scrollValue = $(this).scrollTop();
-//     showOnScroll(scrollValue);
-//     scrollValue >= 1 ? closeMenu() : null;
+  $('#practiceSlider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    infinite: false,
+    speed: 800,
+    fade: true,
+    arrows: true,
+    prevArrow: $('#ptacticePrev'),
+    nextArrow: $('#ptacticeNext'),
+    responsive: [{
+      breakpoint: 575,
+      settings: {
+        adaptiveHeight: true
+      }
+    }]
+  });
+}
 
-//     if (scrollValue > 1) {
-//       header.addClass('sticky');
-//     } else {
-//       header.removeClass('sticky');
-//       // logoImg.attr("src", logoColorUrl);
-//     }
-//   });
+function initCaseSlider() {
+  const counter = document.querySelector('#caseSliderInfo');
+  $(caseSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+    if (!slick.$dots) {
+      return;
+    }
+    var i = (currentSlide ? currentSlide : 0) + 1;
+    counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
+  });
 
-// $('.home-slider').slick({
-//   slidesToShow: 1,
-//   slidesToScroll: 1,
-//   autoplay: true,
-//   dots: true,
-//   arrows: false,
-//   infinite: true,
-//   fade: true,
-//   speed: 1000,
-//   cssEase: 'linear',
-//   autoplaySpeed: 10000
-// });
-// $('.testimonials-slider__wrapper').slick({
-//   slidesToShow: 1,
-//   slidesToScroll: 1,
-//   autoplay: true,
-//   dots: true,
-//   arrows: false,
-//   infinite: true,
-//   fade: true,
-//   speed: 1000,
-//   cssEase: 'linear',
-//   autoplaySpeed: 10000,
-//   arrows: true,
-//   prevArrow: $('.testimonials-slider_prev'),
-//   nextArrow: $('.testimonials-slider_next')
-// });
-// });
+  $('#caseSlider').slick({
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    dots: true,
+    infinite: false,
+    speed: 1000,
+    arrows: true,
+    prevArrow: $('#casePrev'),
+    nextArrow: $('#caseNext'),
+    responsive: [{
+      breakpoint: 991,
+      settings: {
+        slidesToShow: 1
+      }
+    }]
+  });
+}
+
+function initBlogSlider() {
+  const counter = document.querySelector('#blogSliderInfo');
+  $(blogSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+    if (!slick.$dots) {
+      return;
+    }
+    var i = (currentSlide ? currentSlide : 0) + 1;
+
+    counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
+  });
+  $('#blogSlider').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    dots: true,
+    infinite: false,
+    speed: 1000,
+    arrows: true,
+    prevArrow: $('#blogPrev'),
+    nextArrow: $('#blogNext'),
+    responsive: [{
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+}
+
 svg4everybody();
 
 function testWebP(callback) {

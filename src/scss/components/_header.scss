@@ -20,6 +20,12 @@
     font-size: 20px;
     line-height: 1.2em;
 
+    @include d(1199) {
+      font-size: 16px;
+    }
+    @include d(575) {
+      display: none;
+    }
     p,
     a {
       line-height: 1.2em;
@@ -29,6 +35,17 @@
 
 .logo {
   max-width: 430px;
+
+  @include d(1199) {
+    max-width: 320px;
+  }
+
+  @include d(991) {
+    max-width: 240px;
+  }
+   @include d(575) {
+    max-width: 120px;
+  }
 }
 
 .menu {
@@ -40,5 +57,9 @@
     text-transform: uppercase;
     border: none;
     cursor: pointer;
+
+    @include d(1199) {
+      font-size: 16px;
+    }
   }
 }
