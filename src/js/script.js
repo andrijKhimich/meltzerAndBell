@@ -4,6 +4,9 @@ const testimonialsSlider = document.querySelector('#testimonialsSlider');
 const caseSlider = document.querySelector('#caseSlider');
 const blogSlider = document.querySelector('#blogSlider');
 const practiceSlider = document.querySelector('#practiceSlider');
+const sidebarAccordion = document.querySelector('#sidebarAccordion');
+
+// console.log(limitText);
 // function openMenu() {
 //   humburger.classList.add("open");
 //   fadeIn(nav);
@@ -63,27 +66,29 @@ function showContent() {
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
-  const accordionWrapper = document.querySelector('.sidebar-accordion__wrapper');
-  const accordionLink = accordionWrapper.querySelectorAll('.sidebar-accordion__link');
+  if (sidebarAccordion) {
+    const accordionWrapper = document.querySelector('.sidebar-accordion__wrapper');
+    const accordionLink = accordionWrapper.querySelectorAll('.sidebar-accordion__link');
 
-  function accordionToggle(e) {
-    e.preventDefault();
-    const accordionContent = this.nextSibling.nextSibling;
-    const accordionPlus = this;
+    function accordionToggle(e) {
+      e.preventDefault();
+      const accordionContent = this.nextSibling.nextSibling;
+      console.log(accordionContent);
+      if (accordionContent.classList.contains('show')) {
+        this.classList.remove("minus");
+        accordionContent.classList.remove("show");
+      } else {
+        this.classList.add("minus");
+        accordionContent.classList.add("show");
+      }
+    }
 
-    console.log(accordionContent);
-    if (accordionContent.classList.contains('show')) {
-      this.classList.remove("minus");
-      accordionContent.classList.remove("show");
-    } else {
-      this.classList.add("minus");
-      accordionContent.classList.add("show");
+    for (var i = 0; i < accordionLink.length; i++) {
+      accordionLink[i].addEventListener("click", accordionToggle);
     }
   }
 
-  for (var i = 0; i < accordionLink.length; i++) {
-    accordionLink[i].addEventListener("click", accordionToggle);
-  }
+  // }
 
   showContent();
   if (roundText) {

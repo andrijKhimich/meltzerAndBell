@@ -16,10 +16,36 @@
   }
 
   &-decor {
+
+    font-size: 350px;
     position: absolute;
     top: 45%;
     right: 40px;
     transform: translate(0, -50%);
+    -webkit-text-stroke-color: $white;
+
+    @include d(1199) {
+      font-size: 250px;
+    }
+
+    @include d(991) {
+      font-size: 200px;
+    }
+
+    span {
+      font-size: 300px;
+      -webkit-text-fill-color: $white;
+      -webkit-text-stroke-width: 0;
+      -webkit-text-stroke-color: $white;
+
+      @include d(1199) {
+        font-size: 200px;
+      }
+
+      @include d(991) {
+        font-size: 150px;
+      }
+    }
   }
 
   &-footer {
@@ -138,38 +164,14 @@
 
 .decor {
   position: absolute;
-  font-size: 350px;
   font-family: $fontHeading;
   color: transparent;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: $white;
   line-height: .63em;
+  white-space: nowrap;
   letter-spacing: -.24em;
   opacity: .2;
-
-  @include d(1199) {
-    font-size: 250px;
-  }
-
-  @include d(991) {
-    font-size: 200px;
-  }
-
-  span {
-    font-size: 300px;
-    -webkit-text-fill-color: $white;
-    -webkit-text-stroke-width: 0;
-    -webkit-text-stroke-color: $white;
-
-    @include d(1199) {
-      font-size: 200px;
-    }
-
-    @include d(991) {
-      font-size: 150px;
-    }
-  }
 }
 
 .site-title {
@@ -1104,6 +1106,10 @@
           pointer-events: initial;
         }
       }
+    }
+
+    p {
+      margin-bottom: 15px;
     }
   }
 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Project | Contacts</title>
+  @@include('links/_head.html')
+</head>
+
+<body>
+  <div class="main-wrapper contact-page js-fadeIn">
+    @@include('components/_header.html')
+    <main class="main">
+      <section class="hero-inner" style="background-image: url(img/contacts/hero.jpg);">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="section__title hero-inner__title" data-title="Contact Us">
+                <h1 class="title-1">Contact Us</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="content contacts__content">
+                <div class="contacts__title">
+                  <h3 class="title-3">Contact Meltzer & Bell, P.A.</h3>
+                </div>
+                <div class="footer-address">
+                  <div class="footer-address__box">
+                    <h5 class="title-5 footer-address__title">
+                      Location
+                    </h5>
+                    <p>Meltzer & Bell110 SE 6th St Suite 1749
+                      Ft. Lauderdale, FL 33301</p>
+                    <a href="#" class="more-link">Map & Directions</a>
+                  </div>
+                  <div class="footer-address__box">
+                    <h5 class="title-5 footer-address__title">
+                      Phone
+                    </h5>
+                    <a href="tel:(754) 755-8554">(754) 755-8554</a>
+                    <p>Partners on call 24/7</p>
+                    <ul class="social-list">
+                      <li class="social-list__item">
+                        <a href="#" target="_blank" class="social-list__link">
+                          <svg class="svg-social">
+                            <use xlink:href="img/svg/sprite-svg/sprite.svg#facebook">
+                            </use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li class="social-list__item">
+                        <a href="#" target="_blank" class="social-list__link">
+                          <svg class="svg-social">
+                            <use xlink:href="img/svg/sprite-svg/sprite.svg#linkedin">
+                            </use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li class="social-list__item">
+                        <a href="#" target="_blank" class="social-list__link">
+                          <svg class="svg-social">
+                            <use xlink:href="img/svg/sprite-svg/sprite.svg#twitter">
+                            </use>
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 order-1 order-lg-0">
+              <div class="map contacts__map" id="map">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="contact-form">
+                <form>
+                  <div class="form-row">
+                    <div class="form-control">
+                      <input type="text" placeholder="NAME" class="form-input">
+                    </div>
+                    <div class="form-control">
+                      <input type="email" placeholder="EMAIL" class="form-input">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-control">
+                      <input type="text" placeholder="PHONE" class="form-input">
+                    </div>
+                    <div class="form-control">
+                      <input type="email" placeholder="SUBJECT" class="form-input">
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <textarea rows="10" placeholder="Briefly describe your case" class="form-input"></textarea>
+                  </div>
+                  <button class="btn btn_black" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- footer start -->
+    <footer class="footer contacts__footer">
+      <div class="container">
+        <div class="footer_bottom">
+          <div class="row">
+            <div class="col">
+              <div class="footer-row">
+                <a href="/" class="footer-logo">
+                  <img src="img/logo-footer.png" alt="Meltzer & Bell">
+                </a>
+                <nav class="footer-nav">
+                  <ul>
+                    <li><a href="#">Homepage</a></li>
+                    <li><a href="#">Practice Areas</a></li>
+                    <li><a href="#">Case Results</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="copyright">Copyright 2017 - 2020 Meltzer & Bell | Site Map</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer end -->
+  </div>
+  @@include('links/_scripts.html')
+</body>
+
+</html>

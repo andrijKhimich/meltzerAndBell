@@ -109,6 +109,7 @@ h5 {
   }
 }
 
+
 .title-1 {
   @extend h1;
 }
@@ -332,12 +333,11 @@ textarea {
 .section {
   &__title {
     position: relative;
-    // white-space: nowrap;
     margin-bottom: 67px;
     display: inline-block;
 
     @include d(1199) {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     &::before {
@@ -407,6 +407,10 @@ textarea {
 
   &__box {
     margin-bottom: 70px;
+
+    @include d(1199) {
+      margin-bottom: 40px;
+    }
 
     ul {
       margin-left: 30px;
@@ -544,19 +548,38 @@ textarea {
     margin-bottom: 330px;
     margin: 260px 0 316px 0;
 
+    @include d(1199) {
+      margin: 140px 0 200px 0;
+    }
+
+    @include d(991) {
+      margin: 100px 0;
+    }
+
     &::before {
       -webkit-text-stroke-color: $white;
     }
   }
 }
 
-.main-content {}
-
 .content {
   position: relative;
   background-color: $white;
   padding: 80px 0 100px 0;
   margin-top: -194px;
+
+  @include d(1199) {
+    padding: 60px 0;
+    margin-top: -100px;
+  }
+
+  @include d(991) {
+    margin-top: 0;
+  }
+
+  @include d(768) {
+    padding: 20px 0;
+  }
 
   &::before,
   &::after {
@@ -569,16 +592,28 @@ textarea {
 
   &::before {
     right: 100%;
-    width: 100px;
+    width: 50vw;
   }
 
   &::after {
     left: 100%;
     width: 304px;
+
+    @include m(1920) {
+      display: none;
+    }
   }
 
   &_top {
     margin-bottom: 110px;
+
+    @include d(1199) {
+      margin-bottom: 60px;
+    }
+
+    @include d(767) {
+      margin-bottom: 40px;
+    }
   }
 
   b {
@@ -589,6 +624,27 @@ textarea {
   &__title {
     margin-bottom: 33px;
   }
+
+  &_double {
+    column-count: 2;
+    column-gap: 80px;
+    margin-right: -300px;
+
+    @include d(991) {
+      column-gap: 40px;
+      margin-right: 0;
+    }
+
+    @include d(767) {
+      column-count: 1;
+    }
+
+    p,
+    b {
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+  }
 }
 
 .article-pane {
@@ -597,6 +653,11 @@ textarea {
   max-width: 720px;
   margin: 90px 0 70px 0;
   padding: 54px 135px 40px 55px;
+
+  @include d(1199) {
+    padding: 30px 30px 20px 25px;
+
+  }
 
   .title-3,
   & h3 {
@@ -624,5 +685,42 @@ textarea {
         text-decoration: underline;
       }
     }
+  }
+}
+
+.main-content {
+  position: relative;
+}
+
+input[type='checkbox'] {
+  width: 0;
+  height: 0;
+
+  &:checked {
+    &~.custom-checkbox::before {
+      opacity: 1;
+    }
+  }
+}
+
+.custom-checkbox {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 1px solid $black;
+  position: relative;
+  margin-right: 15px;
+
+  &::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: $primary;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: $hover-duration $timing;
   }
 }
