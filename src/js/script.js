@@ -5,21 +5,24 @@ const caseSlider = document.querySelector('#caseSlider');
 const blogSlider = document.querySelector('#blogSlider');
 const practiceSlider = document.querySelector('#practiceSlider');
 const sidebarAccordion = document.querySelector('#sidebarAccordion');
+const menuBtn = document.querySelector('#menuBtn');
+const nav = document.querySelector('#nav');
+const navItems = document.querySelectorAll('.nav-list__link');
 
-// console.log(limitText);
-// function openMenu() {
-//   humburger.classList.add("open");
-//   fadeIn(nav);
-//   setTimeout(function () {
-//     navigationList.classList.add("open");
-//   }, 800);
-// }
+function changeMenuText() {
+  menuBtn.style.color = '#191919';
+  menuBtn.innerText = "close"
+}
 
-// function closeMenu() {
-//   humburger.classList.remove("open");
-//   navigationList.classList.remove("open");
-//   fadeOut(nav);
-// }
+function openMenu() {
+  nav.classList.add("open")
+}
+
+function openSubMenu(e) {
+  // nav.classList.add("open")
+  // e.target.classList.add('active');
+  // console.log(e.target);
+}
 
 // rounded words on firs screen
 function circularWords(words) {
@@ -66,6 +69,23 @@ function showContent() {
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
+
+  menuBtn.addEventListener('click', function () {
+    changeMenuText();
+    openMenu();
+  });
+  navItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      console.log(item);
+      // navItem.classList.remove('active');
+      item.classList.remove('active');
+
+      // console.log(navItem);
+      this.classList.add('active');
+    });
+  })
+
+
   if (sidebarAccordion) {
     const accordionWrapper = document.querySelector('.sidebar-accordion__wrapper');
     const accordionLink = accordionWrapper.querySelectorAll('.sidebar-accordion__link');
@@ -73,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     function accordionToggle(e) {
       e.preventDefault();
       const accordionContent = this.nextSibling.nextSibling;
-      console.log(accordionContent);
       if (accordionContent.classList.contains('show')) {
         this.classList.remove("minus");
         accordionContent.classList.remove("show");

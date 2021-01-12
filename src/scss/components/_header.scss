@@ -14,6 +14,7 @@
     justify-content: space-between;
     padding: 16px 0 14px 0;
     border-bottom: 1px solid rgba($white, .4);
+    position: relative;
   }
 
   &-contact {
@@ -23,9 +24,11 @@
     @include d(1199) {
       font-size: 16px;
     }
+
     @include d(575) {
       display: none;
     }
+
     p,
     a {
       line-height: 1.2em;
@@ -43,7 +46,8 @@
   @include d(991) {
     max-width: 240px;
   }
-   @include d(575) {
+
+  @include d(575) {
     max-width: 120px;
   }
 }
@@ -56,10 +60,72 @@
     background-color: transparent;
     text-transform: uppercase;
     border: none;
+    position: relative;
+    z-index: 100;
     cursor: pointer;
 
     @include d(1199) {
       font-size: 16px;
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $white;
+  padding-top: 100px;
+  width: 100vw;
+  height: 100vw;
+  color: $black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $hover-duration $timing;
+
+  &.open {
+    opacity: 1;
+    pointer-events: initial;
+
+    .nav-sublist {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &-list {
+    border-right: 1px solid $black;
+    padding-right: 80px;
+    max-width: 510px;
+    position: relative;
+
+    &__link,
+    &>a {
+      font-size: 35px;
+      line-height: 1.5em;
+
+      &.active {
+        color: $primary;
+      }
+    }
+  }
+
+  &-sublist {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 100px);
+    column-count: 2;
+    column-gap: 40px;
+    font-family: $fontPrimary;
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+    width: 600px;
+
+    &__item,
+    & li {
+      margin-bottom: 15px;
+      text-transform: uppercase;
     }
   }
 }
