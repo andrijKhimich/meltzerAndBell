@@ -426,7 +426,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       position: new google.maps.LatLng(26.114611520965816, -80.14121611739628),
       map: map,
       title: 'Meltzer and Bell, P.A',
-      icon: '../img/svg/map-point.svg'
+      icon: 'img/svg/map-point.svg'
     });
   }
 });
