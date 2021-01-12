@@ -42,8 +42,27 @@
 .slick-arrow.slick-disabled {}
 
 /* Точки */
-.slick-dots {}
+.slick-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
 
-.slick-dots li {}
+.slick-dots li {
+  width: 8px;
+  height: 8px;
+  border: 1px solid $primary;
+  border-radius: 50%;
+  margin: 0 4px;
 
-.slick-dots button {}
+  &.slick-active {
+    background-color: $primary;
+  }
+}
+
+.slick-dots button {
+  font-size: 0;
+  border: none;
+  padding: 0;
+}

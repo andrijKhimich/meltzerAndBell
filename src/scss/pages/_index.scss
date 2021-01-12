@@ -198,7 +198,7 @@
   }
 
   @include d(991) {
-    padding: 60px 0 40px 0;
+    padding: 0 0 40px 0;
   }
 
   &__img {
@@ -231,7 +231,7 @@
 }
 
 .partners {
-  padding: 20px 0 200px 0;
+  padding: 20px 0 130px 0;
 
   @include d(1199) {
     padding: 20px 0 140px;
@@ -410,6 +410,12 @@
       filter: grayscale(1);
       opacity: .2;
     }
+
+    @include d(575) {
+      max-width: calc(100% + 30px);
+      width: calc(100% + 30px);
+      left: -15px;
+    }
   }
 
   &__title {
@@ -441,6 +447,10 @@
 
   &__item {
     padding: 0 60px;
+
+    @include d(575) {
+      padding: 0;
+    }
   }
 
   &__name {
@@ -460,6 +470,10 @@
       color: $primary;
       font-family: $fontHeading;
       line-height: .5em;
+
+      @include d(575) {
+        display: none;
+      }
     }
 
     &::before {
@@ -769,6 +783,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    z-index: 999;
 
     .slider__number {
       color: $white;
@@ -793,6 +808,10 @@
 
   &__wrapper {
     padding: 0 0 160px 0;
+
+    @include d(575) {
+      padding: 0 0 100px 0;
+    }
   }
 
   &__content {
@@ -932,12 +951,16 @@
 }
 
 .team {
-  padding: 195px 0 145px 0;
+  padding: 195px 0 100px 0;
   overflow: hidden;
   position: relative;
 
   @include d(1199) {
     padding: 100px 0;
+  }
+
+  @include d(575) {
+    padding: 40px 0;
   }
 
   &__bg {
@@ -1006,6 +1029,9 @@
     @include d(1199) {
       margin: 0 auto;
     }
+    @include d(767) {
+      max-width: 280px;
+    }
   }
 
   &__img {
@@ -1020,7 +1046,9 @@
     bottom: 0;
     right: 0;
     padding: 20px 20px 10px 25px;
-
+    @include d(767) {
+      padding: 10px 15px 10px 15px;
+    }
     @include rh(1024) {
       &:hover {
         .more-link {
@@ -1051,11 +1079,15 @@
 }
 
 .blog {
-  padding: 195px 0 20px 0;
+  padding: 140px 0 20px 0;
   position: relative;
 
   @include d(1199) {
     padding: 100px 0 20px 0;
+  }
+
+  @include d(575) {
+    padding: 60px 0 20px 0;
   }
 
   &__title {

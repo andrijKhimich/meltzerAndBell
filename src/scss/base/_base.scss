@@ -365,6 +365,15 @@ textarea {
       @include d(991) {
         font-size: 90px;
       }
+
+      @include d(767) {
+        font-size: 76px;
+      }
+
+      @include d(575) {
+        font-size: 54px;
+        top: 40%;
+      }
     }
   }
 
@@ -448,7 +457,7 @@ textarea {
     content: "";
     width: 27px;
     height: 18px;
-    background-image: url(../img/svg/arrow.svg);
+    background-image: url(../img/svg/arrow-right.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -456,6 +465,10 @@ textarea {
     right: 0;
     top: 0;
     transition: transform $hover-duration $timing;
+  }
+
+  @include d(767) {
+    font-size: 18px;
   }
 
   @include rh(1024) {
@@ -600,7 +613,7 @@ textarea {
     left: 100%;
     width: 304px;
 
-    @include m(1920) {
+    @include m(1921) {
       display: none;
     }
   }

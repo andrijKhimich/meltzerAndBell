@@ -31,6 +31,10 @@
   &-control {
     position: relative;
     margin-bottom: 40px;
+
+    @include d(767) {
+      margin-bottom: 20px;
+    }
   }
 
   &-input {
@@ -40,6 +44,10 @@
     background-color: transparent;
     padding: 5px 0 20px 0;
     color: $black;
+
+    @include d(767) {
+      padding: 5px 0 10px 0;
+    }
 
     &:focus {
       border-color: $primary;

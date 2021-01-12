@@ -20,18 +20,27 @@
   &__item {
     flex: 0 0 280px;
     padding-right: 40px;
+
     @include d(767) {
       margin-bottom: 30px;
       padding-right: 0;
+      flex: 0 0 220px;
+    }
+
+    @include d(575) {
+      margin-bottom: 20px;
+      flex: 0 0 180px;
     }
   }
 
   &__title {
     margin-bottom: 15px;
     text-transform: uppercase;
+
     &:empty {
       height: 23px;
     }
+
     &.active {
       color: $primary;
     }

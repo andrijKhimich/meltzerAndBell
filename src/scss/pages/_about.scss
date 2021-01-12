@@ -219,6 +219,10 @@
 .about__text {
   margin-bottom: 80px;
 
+  @include d(767) {
+    margin-bottom: 20px;
+  }
+
   span {
     color: $primary;
     font-family: $fontHeading;
@@ -235,6 +239,10 @@
   justify-content: space-between;
   margin: 60px -15px;
   flex-wrap: wrap;
+
+  @include d(767) {
+    margin: 20px -15px;
+  }
 
   &__item {
     flex: 0 0 180px;

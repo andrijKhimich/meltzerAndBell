@@ -8,20 +8,38 @@ const sidebarAccordion = document.querySelector('#sidebarAccordion');
 const menuBtn = document.querySelector('#menuBtn');
 const nav = document.querySelector('#nav');
 const navItems = document.querySelectorAll('.nav-list__link');
+const submenu = document.querySelectorAll('.nav-sublist');
 
-function changeMenuText() {
-  menuBtn.style.color = '#191919';
-  menuBtn.innerText = "close"
-}
+
+
+// function changeMenuText() {
+//   menuBtn.style.color = '#191919';
+//   menuBtn.innerText = "close"
+// }
 
 function openMenu() {
-  nav.classList.add("open")
+  menuBtn.classList.add('active');
+  menuBtn.innerText = "close";
+  nav.classList.add("open");
 }
 
-function openSubMenu(e) {
+function closeMenu() {
+  menuBtn.classList.remove('active');
+  menuBtn.innerText = "menu";
+  nav.classList.remove("open");
+  navItems.forEach(function (element) {
+    element.classList.remove("active");
+  });
+  submenu.forEach(function (element) {
+    element.classList.remove("active");
+  });
+}
+
+function openSubMenu() {
   // nav.classList.add("open")
   // e.target.classList.add('active');
   // console.log(e.target);
+  // submenu.classList.add('active');
 }
 
 // rounded words on firs screen
@@ -71,17 +89,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
   menuBtn.addEventListener('click', function () {
-    changeMenuText();
-    openMenu();
+    if (this.classList.contains("active")) {
+      // changeMenuText();
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
-  navItems.forEach(function (item) {
-    item.addEventListener('click', function () {
-      console.log(item);
-      // navItem.classList.remove('active');
-      item.classList.remove('active');
 
-      // console.log(navItem);
+  navItems.forEach(function (link) {
+    link.addEventListener('click', function () {
+      navItems.forEach(function (element) {
+        element.classList.remove("active");
+      });
       this.classList.add('active');
+
+      submenu.forEach(function (sublist) {
+        sublist.classList.remove("active");
+      });
+      const sublist = this.nextSibling.nextSibling;
+      console.log(sublist);
+      if (sublist != null) {
+        sublist.classList.add('active');
+      }
+
     });
   })
 
@@ -159,7 +190,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
           {
             breakpoint: 180,
             settings: {
-              slidesToShow: 2
+              slidesToShow: 2,
+              dots: true
             }
           },
           {
@@ -186,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         // slidesToShow: 6,
         slidesToScroll: 1,
         autoplay: true,
-        dots: false,
+        // dots: false,
         arrows: false,
         infinite: false,
         autoplaySpeed: 10000,
@@ -204,7 +236,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
           {
             breakpoint: 575,
             settings: {
-              slidesToShow: 4
+              slidesToShow: 4,
+               dots: true
             }
           },
           {
