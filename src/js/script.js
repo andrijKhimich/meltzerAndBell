@@ -1,4 +1,4 @@
-const humburger = document.querySelector(".humburger");
+const body = document.getElementsByTagName('body')[0];
 const roundText = document.querySelector("#roundText");
 const testimonialsSlider = document.querySelector('#testimonialsSlider');
 const caseSlider = document.querySelector('#caseSlider');
@@ -9,18 +9,16 @@ const menuBtn = document.querySelector('#menuBtn');
 const nav = document.querySelector('#nav');
 const navItems = document.querySelectorAll('.nav-list__link');
 const submenu = document.querySelectorAll('.nav-sublist');
+const moreLink = document.querySelectorAll('.js-open-text');
+const hiddenText = document.querySelectorAll('.more-text');
 
 
-
-// function changeMenuText() {
-//   menuBtn.style.color = '#191919';
-//   menuBtn.innerText = "close"
-// }
 
 function openMenu() {
   menuBtn.classList.add('active');
   menuBtn.innerText = "close";
   nav.classList.add("open");
+  body.style.overflow = 'hidden';
 }
 
 function closeMenu() {
@@ -33,13 +31,7 @@ function closeMenu() {
   submenu.forEach(function (element) {
     element.classList.remove("active");
   });
-}
-
-function openSubMenu() {
-  // nav.classList.add("open")
-  // e.target.classList.add('active');
-  // console.log(e.target);
-  // submenu.classList.add('active');
+  body.style.overflow = 'auto';
 }
 
 // rounded words on firs screen
@@ -47,7 +39,6 @@ function circularWords(words) {
   const degreeToRadian = (angle) => {
     return angle * (Math.PI / 180);
   };
-
   const radius = 80;
   const diameter = radius * 2;
 
@@ -85,12 +76,31 @@ function showContent() {
   document.querySelector(".main-wrapper").classList.remove("js-fadeIn");
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
 
+for (var i = 0; i < hiddenText.length; i++) {
+  hiddenText[i].style.display = "none"; // depending on what you're doing
+}
+moreLink.forEach(function (link) {
+  link.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    let hiddenText = this.previousSibling.previousSibling;
+    console.log(hiddenText);
+    if (hiddenText.style.display === "none") {
+      this.innerHTML = "See less";
+      hiddenText.style.display = "block";
+    } else {
+      this.innerHTML = "See more";
+      hiddenText.style.display = "none";
+    }
+  });
+})
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  showContent();
 
   menuBtn.addEventListener('click', function () {
     if (this.classList.contains("active")) {
-      // changeMenuText();
       closeMenu();
     } else {
       openMenu();
@@ -108,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         sublist.classList.remove("active");
       });
       const sublist = this.nextSibling.nextSibling;
-      console.log(sublist);
       if (sublist != null) {
         sublist.classList.add('active');
       }
@@ -138,30 +147,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
   }
 
-  // }
-
-  showContent();
   if (roundText) {
     circularWords(roundText);
   }
 
-  // if (partnersSlide) {
   initPartnersSlider();
-  // }
 
   initTestimonialsSlider();
   initPressSlider();
   initCaseSlider();
-  initBlogSlider();
+  // initBlogSlider();
   initPracticeSlider();
-
-  // humburger.addEventListener("click", function () {
-  //   if (this.classList.contains("open")) {
-  //     closeMenu();
-  //   } else {
-  //     openMenu();
-  //   }
-  // });
 
 
   window.addEventListener('resize', function (event) {
@@ -215,10 +211,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     const partnerSlider = document.querySelector('.press__slider.slick-slider');
     if (window.innerWidth < 991 && !partnerSlider) {
       $('#pressSlider').slick({
-        // slidesToShow: 6,
         slidesToScroll: 1,
         autoplay: true,
-        // dots: false,
         arrows: false,
         infinite: false,
         autoplaySpeed: 10000,
@@ -237,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             breakpoint: 575,
             settings: {
               slidesToShow: 4,
-               dots: true
+              dots: true
             }
           },
           {
@@ -517,40 +511,39 @@ function initCaseSlider() {
   });
 }
 
-function initBlogSlider() {
-  const counter = document.querySelector('#blogSliderInfo');
-  $(blogSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
-    if (!slick.$dots) {
-      return;
-    }
-    var i = (currentSlide ? currentSlide : 0) + 1;
-
-    counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
-  });
-  $('#blogSlider').slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    dots: true,
-    infinite: false,
-    speed: 1000,
-    arrows: true,
-    prevArrow: $('#blogPrev'),
-    nextArrow: $('#blogNext'),
-    responsive: [{
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2
-        }
-      },
-      {
-        breakpoint: 575,
-        settings: {
-          slidesToShow: 1
-        }
-      }
-    ]
-  });
-}
+// function initBlogSlider() {
+//   const counter = document.querySelector('#blogSliderInfo');
+//   $(blogSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+//     if (!slick.$dots) {
+//       return;
+//     }
+//     var i = (currentSlide ? currentSlide : 0) + 1;
+//     counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length + 2);
+//   });
+//   $('#blogSlider').slick({
+//     slidesToShow: 3,
+//     slidesToScroll: 1,
+//     dots: true,
+//     infinite: false,
+//     speed: 1000,
+//     arrows: true,
+//     prevArrow: $('#blogPrev'),
+//     nextArrow: $('#blogNext'),
+//     responsive: [{
+//         breakpoint: 768,
+//         settings: {
+//           slidesToShow: 2
+//         }
+//       },
+//       {
+//         breakpoint: 575,
+//         settings: {
+//           slidesToShow: 1
+//         }
+//       }
+//     ]
+//   });
+// }
 
 svg4everybody();
 

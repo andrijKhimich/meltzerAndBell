@@ -45,10 +45,7 @@
 
   @include d(991) {
     max-width: 240px;
-  }
-
-  @include d(575) {
-    max-width: 120px;
+    padding-left: 15px;
   }
 }
 
@@ -231,5 +228,24 @@
         margin-bottom: 3px;
       }
     }
+  }
+}
+
+.header-phone {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  font-size: 24px;
+  background-color: $white;
+  color: $primary;
+  font-family: $fontHeading;
+  text-align: center;
+  padding: 5px 15px;
+  z-index: 999999;
+  border-top: 1px solid $primary;
+  @include d(767) {
+    display: block;
   }
 }

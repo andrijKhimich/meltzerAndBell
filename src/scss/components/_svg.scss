@@ -34,4 +34,10 @@
     fill: $white;
     transition: fill $hover-duration $timing;
   }
+
+  &-phone {
+    width: 20px;
+    height: 20px;
+    fill: $primary;
+  }
 }
