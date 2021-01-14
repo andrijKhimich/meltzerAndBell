@@ -11,6 +11,10 @@ const navItems = document.querySelectorAll('.nav-list__link');
 const submenu = document.querySelectorAll('.nav-sublist');
 const moreLink = document.querySelectorAll('.js-open-text');
 const hiddenText = document.querySelectorAll('.more-text');
+const filterLink = document.querySelectorAll('.filter__list li');
+const filterResult = document.querySelector('#filterResult');
+
+
 
 
 
@@ -96,7 +100,10 @@ moreLink.forEach(function (link) {
   });
 })
 
-document.addEventListener("DOMContentLoaded", function (e) {
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
   showContent();
 
   menuBtn.addEventListener('click', function () {
@@ -511,39 +518,6 @@ function initCaseSlider() {
   });
 }
 
-// function initBlogSlider() {
-//   const counter = document.querySelector('#blogSliderInfo');
-//   $(blogSlider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
-//     if (!slick.$dots) {
-//       return;
-//     }
-//     var i = (currentSlide ? currentSlide : 0) + 1;
-//     counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length + 2);
-//   });
-//   $('#blogSlider').slick({
-//     slidesToShow: 3,
-//     slidesToScroll: 1,
-//     dots: true,
-//     infinite: false,
-//     speed: 1000,
-//     arrows: true,
-//     prevArrow: $('#blogPrev'),
-//     nextArrow: $('#blogNext'),
-//     responsive: [{
-//         breakpoint: 768,
-//         settings: {
-//           slidesToShow: 2
-//         }
-//       },
-//       {
-//         breakpoint: 575,
-//         settings: {
-//           slidesToShow: 1
-//         }
-//       }
-//     ]
-//   });
-// }
 
 svg4everybody();
 
@@ -562,4 +536,43 @@ testWebP(function (support) {
   } else {
     document.querySelector("body").classList.add("no-webp");
   }
+});
+
+
+
+// REMEMBER TO PUT THIS INSIDE 
+$(document).ready(function () {
+  var
+    mContainer = $(".case-wrapper"),
+    filterButton = $(".filter__list li");
+  params = {
+    itemSelector: ".case",
+    filtersGroupSelector: ".filter__list",
+    selectorType: "list"
+  };
+
+  // $(window).load(function () {
+
+  // Do mansonry with filtering 
+  mContainer.multipleFilterMasonry(params);
+  console.log(mContainer);
+  // Show articles with fadein
+  mContainer.find(".case").animate({
+    "opacity": 1
+  }, 100);
+
+  // Change the filtering button(label) status 
+  filterButton.click(function () {
+    $(this).toggleClass("active");
+  });
+  filterLink.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const filterBox = document.querySelectorAll('.case');
+      // console.log(filterBox.length);
+
+      filterResult.innerHTML = filterBox.length
+    });
+  })
+  // });
 });

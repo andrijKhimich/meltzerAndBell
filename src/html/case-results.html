@@ -19,6 +19,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </section>
       <section class="main-content">
@@ -38,36 +39,36 @@
                     <p class="filter__title">Filter by</p>
                     <h5 class="title-5 filter__subtitle">Charge:</h5>
                     <ul class="filter__list">
-                      <li class="active"><a href="#">DUI Cases Drug Cases Sex</a> <span class="close"></span> </li>
-                      <li><a href="#">Offenses Domestic</a></li>
-                      <li><a href="#">Violence Violent Crimes</a></li>
-                      <li><a href="#">Theft Cases Firearm</a></li>
-                      <li><a href="#">Weapons Cases Probation</a></li>
-                      <li><a href="#">Violations Other</a></li>
+                      <li data-filter="drug-cases-sex, charge">DUI Cases Drug Cases Sex</li>
+                      <li data-filter="offenses-domestic, charge">Offenses Domestic</li>
+                      <li data-filter="violence-violent-crimes, charge">Violence Violent Crimes</li>
+                      <li data-filter="theft-cases-firearm, charge">Theft Cases Firearm</li>
+                      <li data-filter="weapons-cases-probation, charge">Weapons Cases Probation</li>
+                      <li data-filter="violations-other, charge">Violations Other</li>
                     </ul>
                   </div>
                   <div class="filter__item">
                     <p class="filter__title">Show All</p>
                     <h5 class="title-5 filter__subtitle">Outcome:</h5>
                     <ul class="filter__list">
-                      <li><a href="#">Not Guilty Dismissal No</a> <span class="close"></span> </li>
-                      <li><a href="#">Charges Filed Charges</a></li>
-                      <li><a href="#">Reduced Probation</a></li>
-                      <li><a href="#">Charges Dropped No Jail</a></li>
+                      <li data-filter="not-guilty-dismissal, outcome">Not Guilty Dismissal No</li>
+                      <li data-filter="charges-filed-charges, outcome">Charges Filed Charges</li>
+                      <li data-filter="reduced-probation, outcome">Reduced Probation</li>
+                      <li data-filter="charges-dropped-no-jail, outcome">Charges Dropped No Jail</li>
                     </ul>
                   </div>
                   <div class="filter__item">
                     <p class="filter__title"></p>
                     <h5 class="title-5 filter__subtitle">Jurisdiction:</h5>
                     <ul class="filter__list">
-                      <li><a href="#">Palm Beach</a> <span class="close"></span> </li>
-                      <li><a href="#">Broward</a></li>
+                      <li data-filter="palm-beach, jurisdiction">Palm Beach</li>
+                      <li data-filter="broward, jurisdiction">Broward</li>
                     </ul>
                   </div>
                 </div>
-                <p class="filter-result">Currently Showing <span class="filter-result__number">159</span> Results</p>
+                <p class="filter-result">Currently Showing <span class="filter-result__number" id="filterResult"></span> Results</p>
                 <div class="case-wrapper">
-                  <div class="case">
+                  <div class="case charge palm-beach drug-cases-sex">
                     <div class="case__img">
                       <h3 class="title-3">NO
                         CHARGES
@@ -99,7 +100,7 @@
                         confess to a car theft, he was arrested and charged with 6 crimes.</p>
                     </div>
                   </div>
-                  <div class="case">
+                  <div class="case charge browarde offenses-domestic">
                     <div class="case__img">
                       <h3 class="title-3">NO
                         PRISON
@@ -129,7 +130,7 @@
                         confess to a car theft, he was arrested and charged with 6 crimes.</p>
                     </div>
                   </div>
-                  <div class="case">
+                  <div class="case charge broward violence-violent-crimes">
                     <div class="case__img">
                       <h3 class="title-3">NO JAIL</h3>
                       <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
@@ -157,7 +158,247 @@
                         confess to a car theft, he was arrested and charged with 6 crimes.</p>
                     </div>
                   </div>
-                  <div class="case">
+                  <div class="case charge broward theft-cases-firearm">
+                    <div class="case__img">
+                      <h3 class="title-3">NO
+                        PRISON
+                        SENTENCE</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">Fleeing and Eluding and DUI</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case outcome broward weapons-cases-probation">
+                    <div class="case__img">
+                      <h3 class="title-3">NO
+                        CHARGES
+                        FILED</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">Fraudulent Use of a Credit Card (2 Counts) Fraudulent Use of Person ID
+                        Information (2 Counts) Unlawful Possession of
+                        Stolen Credit Card Petit Theft</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case outcome broward violations-other">
+                    <div class="case__img">
+                      <h3 class="title-3">NO
+                        PRISON
+                        SENTENCE</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">Fleeing and Eluding and DUI</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case outcome palm-beach not-guilty-dismissal">
+                    <div class="case__img">
+                      <h3 class="title-3">NO JAIL</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">DUI Enhanced (2nd Outside of 5 Years)</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case outcome palm-beach not-guilty-dismissal">
+                    <div class="case__img">
+                      <h3 class="title-3">NO
+                        PRISON
+                        SENTENCE</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">Fleeing and Eluding and DUI</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case jurisdiction palm-beach charges-filed-charges">
+                    <div class="case__img">
+                      <h3 class="title-3">NO
+                        CHARGES
+                        FILED</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">Fraudulent Use of a Credit Card (2 Counts) Fraudulent Use of Person ID
+                        Information (2 Counts) Unlawful Possession of
+                        Stolen Credit Card Petit Theft</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case jurisdiction palm-beach reduced-probation">
+                    <div class="case__img">
+                      <h3 class="title-3">NO
+                        PRISON
+                        SENTENCE</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">Fleeing and Eluding and DUI</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case jurisdiction palm-beach charges-dropped-no-jail">
+                    <div class="case__img">
+                      <h3 class="title-3">NO JAIL</h3>
+                      <img src="img/case-results/case.jpg" alt="Palm Beach 2020">
+                    </div>
+                    <div class="case__content">
+                      <h6 class="case__subtitle">Palm Beach
+                        2020</h6>
+                      <h5 class="title-5">DUI Enhanced (2nd Outside of 5 Years)</h5>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>After being retained, we immediately contacted the State Attorney’s Office and set up a line of
+                      </p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                      <p>Our client came to us after he was charged with using his child’s mother’s credit card. After
+                        her car was stolen, police
+                        tried to influence our client’s child’s mother to believe our client had stolen her vehicle.
+                        When our client would not
+                        confess to a car theft, he was arrested and charged with 6 crimes.</p>
+                    </div>
+                  </div>
+                  <div class="case jurisdiction palm-beach">
                     <div class="case__img">
                       <h3 class="title-3">NO
                         PRISON
@@ -584,6 +825,61 @@
       Call us 24/7
     </a>
   </div>
+  <!-- <ul class="button-area filters">
+    <li data-filter="group1">Group 1</li>
+    <li data-filter="group2">Group 2</li>
+    <li data-filter="group3">Group 3</li>
+  </ul>
+  <div id="mnsry_container">
+    <div class="item group1 group2">
+      <h1>Group 1 & 2</h1>
+      <img src="https://unsplash.it/600/400?image=19" />
+    </div>
+    <div class="item group2">
+      <h1>Group 2</h1>
+      <img src="https://unsplash.it/600/400?image=1" />
+    </div>
+    <div class="item group3">
+      <h1>Group 3</h1>
+      <img src="https://unsplash.it/600/400?image=2" />
+    </div>
+    <div class="item group2">
+      <h1>Group 2</h1>
+      <img src="https://unsplash.it/600/400?image=3" />
+    </div>
+    <div class="item group1 group4">
+      <h1>Group 1 & 4</h1>
+      <img src="https://unsplash.it/600/400?image=4" />
+    </div>
+    <div class="item group2 group4">
+      <h1>Group 2 & 4</h1>
+      <img src="https://unsplash.it/600/400?image=5" />
+    </div>
+    <div class="item group3 group4">
+      <h1>Group 3 & 4</h1>
+      <img src="https://unsplash.it/600/400?image=6" />
+    </div>
+    <div class="item group2 group3">
+      <h1>Group 2 & 3</h1>
+      <img src="https://unsplash.it/600/400?image=7" />
+    </div>
+    <div class="item group3">
+      <h1>Group 3</h1>
+      <img src="https://unsplash.it/600/400?image=18" />
+    </div>
+    <div class="item group4">
+      <h1>Group 4</h1>
+      <img src="https://unsplash.it/600/400?image=9" />
+    </div>
+    <div class="item group1">
+      <h1>Group 1</h1>
+      <img src="https://unsplash.it/600/400?image=10" />
+    </div>
+    <div class="item group2">
+      <h1>Group 2</h1>
+      <img src="https://unsplash.it/600/400?image=11" />
+    </div>
+  </div> -->
   @@include('links/_scripts.html')
 </body>
 
