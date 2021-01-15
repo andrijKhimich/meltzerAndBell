@@ -83,10 +83,13 @@ gulp.task("js", function () {
   return gulp
     .src([
       // js libs uncomment what you need
-      // "node_modules/jquery/dist/jquery.min.js",
+      "node_modules/jquery/dist/jquery.min.js",
+
       "node_modules/slick-carousel/slick/slick.min.js",
       "node_modules/svg4everybody/dist/svg4everybody.min.js",
       // "node_modules/mixitup/dist/mixitup.min.js",
+      "src/js/masonry.js",
+      "src/js/filter.js",
 
       // "node_modules/shufflejs/dist/shuffle.min.js",
       // "node_modules/shufflejs/dist/shuffle.esm.js",
