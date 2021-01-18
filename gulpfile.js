@@ -88,9 +88,9 @@ gulp.task("js", function () {
       "node_modules/slick-carousel/slick/slick.min.js",
       "node_modules/svg4everybody/dist/svg4everybody.min.js",
       // "node_modules/mixitup/dist/mixitup.min.js",
-      "src/js/masonry.js",
-      "src/js/filter.js",
-
+      "src/js/isotope.js",
+      // "src/js/filter.js",
+      
       // "node_modules/shufflejs/dist/shuffle.min.js",
       // "node_modules/shufflejs/dist/shuffle.esm.js",
       // "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js",
