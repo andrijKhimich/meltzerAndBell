@@ -539,97 +539,58 @@ testWebP(function (support) {
 });
 
 
-
-// // REMEMBER TO PUT THIS INSIDE 
-// $(document).ready(function () {
-//   var
-//     mContainer = $(".case-wrapper"),
-//     filterButton = $(".filter__list li");
-//   params = {
-//     itemSelector: ".case",
-//     filtersGroupSelector: ".filter__list",
-//     selectorType: "list"
-//   };
-
-//   // $(window).load(function () {
-
-//   // Do mansonry with filtering 
-//   mContainer.multipleFilterMasonry(params);
-//   console.log(mContainer);
-//   // Show articles with fadein
-//   mContainer.find(".case").animate({
-//     "opacity": 1
-//   }, 100);
-
-//   // Change the filtering button(label) status 
-//   filterButton.click(function () {
-//     $(this).toggleClass("active");
-//   });
-//   filterLink.forEach(function (link) {
-//     link.addEventListener('click', function (event) {
-//       event.preventDefault();
-//       const filterBox = document.querySelectorAll('.case');
-//       // console.log(filterBox.length);
-
-//       filterResult.innerHTML = filterBox.length
-//     });
-//   })
-//   // });
-// });
-
 // External js: jquery, isotope.pkgd.js, bootstrap.min.js
-$(document).ready( function() {
+$(document).ready(function () {
 
   // Create object to store filter for each group
   var buttonFilters = {};
   var buttonFilter = '*';
   // Create new object for the range filters and set default values
   // The default values should correspond to the default values from the slider
-
   // Initialise Isotope
   // Set the item selector
   var $grid = $('.case-wrapper').isotope({
     itemSelector: '.case',
-    layout: 'masonry',
+    layout: 'vertical',
     // use filter function
-    filter: function() {
+    filter: function () {
       var $this = $(this);
-      return $this.is( buttonFilter );
+      return $this.is(buttonFilter);
     }
   });
 
   // Look inside element with .filters class for any clicks on elements with .btn
-  $('.filter').on( 'click', '.filter-btn', function() {
+  $('.filter').on('click', '.filter-btn', function () {
 
     var $this = $(this);
     // Get group key from parent btn-group (e.g. data-filter-group="color")
     var $buttonGroup = $this.parents('.filter__list');
     var filterGroup = $buttonGroup.attr('data-filter-group');
     // set filter for group
-    buttonFilters[ filterGroup ] = $this.attr('data-filter');
+    buttonFilters[filterGroup] = $this.attr('data-filter');
     // Combine filters or set the value to * if buttonFilters
-    buttonFilter = concatValues( buttonFilters ) || '*';
+    buttonFilter = concatValues(buttonFilters) || '*';
     // Log out current filter to check that it's working when clicked
-    console.log( buttonFilter )
+    console.log(buttonFilter)
     // Trigger isotope again to refresh layout
     $grid.isotope();
   });
 
   // change checked class on btn-filter to toggle which one is active
-  $('.filter__list').each( function( i, buttonGroup ) {
-      var $buttonGroup = $( buttonGroup );
-      $buttonGroup.on( 'click', '.filter-btn', function() {
-          $buttonGroup.find('.checked').removeClass('checked');
-          $(this).addClass('checked');
-      });
+  $('.filter__list').each(function (i, buttonGroup) {
+    var $buttonGroup = $(buttonGroup);
+    $buttonGroup.on('click', '.filter-btn', function () {
+      $buttonGroup.find('.checked').removeClass('checked');
+      $(this).addClass('checked');
+    });
   });
 });
 
 // Flatten object by concatting values
-function concatValues( obj ) {
+function concatValues(obj) {
   var value = '';
-  for ( var prop in obj ) {
-    value += obj[ prop ];
+  for (var prop in obj) {
+    value += obj[prop];
   }
   return value;
 }

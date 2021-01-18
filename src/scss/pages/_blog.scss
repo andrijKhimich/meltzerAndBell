@@ -90,7 +90,7 @@
 
     &__content {
       margin-left: 60px;
-
+      
       @include d(1199) {
         margin-left: 30px;
       }

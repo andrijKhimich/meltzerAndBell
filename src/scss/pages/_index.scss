@@ -1110,8 +1110,7 @@
   &__content {
     display: flex;
     max-width: 1200px;
-    margin: 0 -30px 60px -30px;
-
+    margin: 60px auto;
     @include d(575) {
       flex-wrap: wrap;
     }
@@ -1127,7 +1126,8 @@
 
   &__item {
     padding: 30px 30px 0 30px;
-
+    position: relative;
+    z-index: 1;
     @include d(1199) {
       padding: 30px 15px 0 15px;
     }
