@@ -12,7 +12,7 @@ const submenu = document.querySelectorAll('.nav-sublist');
 const moreLink = document.querySelectorAll('.js-open-text');
 const hiddenText = document.querySelectorAll('.more-text');
 const filterLink = document.querySelectorAll('.filter__list li');
-const filterResult = document.querySelector('#filterResult');
+
 
 
 
@@ -89,7 +89,6 @@ moreLink.forEach(function (link) {
     event.preventDefault();
 
     let hiddenText = this.previousSibling.previousSibling;
-    console.log(hiddenText);
     if (hiddenText.style.display === "none") {
       this.innerHTML = "See less";
       hiddenText.style.display = "block";
@@ -538,57 +537,66 @@ testWebP(function (support) {
   }
 });
 
-
-// External js: jquery, isotope.pkgd.js, bootstrap.min.js
 $(document).ready(function () {
 
-  // Create object to store filter for each group
-  var buttonFilters = {};
-  var buttonFilter = '*';
-  // Create new object for the range filters and set default values
-  // The default values should correspond to the default values from the slider
-  // Initialise Isotope
-  // Set the item selector
-  var $grid = $('.case-wrapper').isotope({
-    itemSelector: '.case',
-    layout: 'vertical',
-    // use filter function
-    filter: function () {
-      var $this = $(this);
-      return $this.is(buttonFilter);
-    }
-  });
+  if ($('.case-wrapper')) {
+    // Create object to store filter for each group
+    let buttonFilters = {};
+    let buttonFilter = '*';
+  
+    // Create new object for the range filters and set default values
+    // The default values should correspond to the default values from the slider
 
-  // Look inside element with .filters class for any clicks on elements with .btn
-  $('.filter').on('click', '.filter-btn', function () {
-
-    var $this = $(this);
-    // Get group key from parent btn-group (e.g. data-filter-group="color")
-    var $buttonGroup = $this.parents('.filter__list');
-    var filterGroup = $buttonGroup.attr('data-filter-group');
-    // set filter for group
-    buttonFilters[filterGroup] = $this.attr('data-filter');
-    // Combine filters or set the value to * if buttonFilters
-    buttonFilter = concatValues(buttonFilters) || '*';
-    // Log out current filter to check that it's working when clicked
-    console.log(buttonFilter)
-    // Trigger isotope again to refresh layout
-    $grid.isotope();
-  });
-
-  // change checked class on btn-filter to toggle which one is active
-  $('.filter__list').each(function (i, buttonGroup) {
-    var $buttonGroup = $(buttonGroup);
-    $buttonGroup.on('click', '.filter-btn', function () {
-      $buttonGroup.find('.checked').removeClass('checked');
-      $(this).addClass('checked');
+    // Initialise Isotope
+    // Set the item selector
+    const $grid = $('.case-wrapper').isotope({
+      itemSelector: '.case',
+      layout: 'vertical',
+      // use filter function
+      filter: function () {
+        var $this = $(this);
+        return $this.is(buttonFilter);
+      }
     });
-  });
+  var iso = $grid.data('isotope');
+    var $filterCount = $('#filterResult');
+    // Look inside element with .filters class for any clicks on elements with .btn
+    $('.filter').on('click', '.filter-btn', function () {
+      const $this = $(this);
+      // Get group key from parent btn-group (e.g. data-filter-group="color")
+      const $buttonGroup = $this.parents('.filter__list');
+      const filterGroup = $buttonGroup.attr('data-filter-group');
+      // set filter for group
+      buttonFilters[filterGroup] = $this.attr('data-filter');
+      // Combine filters or set the value to * if buttonFilters
+      buttonFilter = concatValues(buttonFilters) || '*';
+      // Log out current filter to check that it's working when clicked
+      // Trigger isotope again to refresh layout
+      $grid.isotope();
+      updateFilterCount();
+    });
+
+    // change checked class on btn-filter to toggle which one is active
+    $('.filter__list').each(function (i, buttonGroup) {
+      const $buttonGroup = $(buttonGroup);
+      $buttonGroup.on('click', '.filter-btn', function () {
+        $buttonGroup.find('.checked').removeClass('checked');
+        $(this).addClass('checked');
+      });
+
+    });
+
+    function updateFilterCount() {
+      $filterCount.text(iso.filteredItems.length);
+    }
+    updateFilterCount();
+  }
 });
+
 
 // Flatten object by concatting values
 function concatValues(obj) {
-  var value = '';
+  let value = '';
   for (var prop in obj) {
     value += obj[prop];
   }
