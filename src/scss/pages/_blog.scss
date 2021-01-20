@@ -181,3 +181,43 @@
     }
   }
 }
+
+.tag-filter__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-filter__list li {
+  width: 33%;
+
+  @include d(480) {
+    width: 50%;
+  }
+}
+
+.tag-filter__list a {
+  width: 100%;
+  padding-top: 7px;
+  padding-bottom: 6px;
+  padding-right: 10px;
+}
+
+.tag-filter__list a.active {
+  background-color: $primary;
+  padding-left: 10px;
+  color: #fff;
+}
+
+.tag-filter__title-item {
+  display: inline-block;
+  width: 33%;
+
+  @include d(480) {
+    width: 50%;
+  }
+}
+
+.tag-filter__title-item a.active {
+  width: 100%;
+  color: $primary;
+}
