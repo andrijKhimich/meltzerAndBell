@@ -90,7 +90,7 @@
 
     &__content {
       margin-left: 60px;
-      
+
       @include d(1199) {
         margin-left: 30px;
       }
@@ -148,6 +148,36 @@
         top: 8px;
         left: 0;
       }
+    }
+  }
+}
+
+.tag-filter__list {
+  margin: 20px 0;
+  font-size: 14px;
+
+
+  li {
+    border: 1px solid transparent;
+    padding: 5px 28px 5px 0;
+    position: relative;
+    transition: .4s cubic-bezier(.7, 0, .3, 1);
+    cursor: pointer;
+
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+    &.checked {
+      border-color: $primary;
+      background-color: $primary;
+      color: $white;
+      padding: 5px 28px 5px 15px;
+    }
+
+    &::before {
+      display: none;
     }
   }
 }

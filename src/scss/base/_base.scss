@@ -612,10 +612,6 @@ textarea {
   &::after {
     left: 100%;
     width: 304px;
-
-    @include m(1921) {
-      display: none;
-    }
   }
 
   &_top {
