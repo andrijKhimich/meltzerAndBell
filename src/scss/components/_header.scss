@@ -141,8 +141,6 @@
     &__item,
     &>li {
       pointer-events: none;
-
-      // position: relative;
       @include d(767) {
         position: relative;
       }
@@ -209,10 +207,6 @@
       opacity: 1;
       pointer-events: initial;
 
-      .nav-sublist__item {
-        // pointer-events: initial;
-      }
-
       @include d(767) {
         height: auto;
       }
@@ -222,7 +216,6 @@
     & li {
       margin-bottom: 15px;
       text-transform: uppercase;
-      pointer-events: none;
 
       @include d(767) {
         margin-bottom: 3px;
