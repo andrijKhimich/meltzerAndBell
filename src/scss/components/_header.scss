@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   color: $white;
-  z-index: 10;
+  z-index: 1000;
   font-family: $fontHeading;
 
   &__row {
@@ -83,7 +83,6 @@
   height: 100vh;
   color: $black;
   opacity: 0;
-  // z-index: -1;
   pointer-events: none;
   transition: opacity $hover-duration $timing;
 
@@ -141,26 +140,26 @@
     &__item,
     &>li {
       pointer-events: none;
+
       @include d(767) {
         position: relative;
       }
-    }
 
-    &__link,
-    &>a {
-      font-size: 35px;
-      line-height: 1.5em;
+      & > a {
+        font-size: 35px;
+        line-height: 1.5em;
 
-      @include d(1199) {
-        font-size: 28px;
-      }
+        @include d(1199) {
+          font-size: 28px;
+        }
 
-      @include d(767) {
-        font-size: 18px;
-      }
+        @include d(767) {
+          font-size: 18px;
+        }
 
-      &.active {
-        color: $primary;
+        &.active {
+          color: $primary;
+        }
       }
     }
   }
@@ -238,6 +237,7 @@
   padding: 5px 15px;
   z-index: 999999;
   border-top: 1px solid $primary;
+
   @include d(767) {
     display: block;
   }

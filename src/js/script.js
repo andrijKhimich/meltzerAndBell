@@ -7,21 +7,43 @@ const practiceSlider = document.querySelector('#practiceSlider');
 const sidebarAccordion = document.querySelector('#sidebarAccordion');
 const menuBtn = document.querySelector('#menuBtn');
 const nav = document.querySelector('#nav');
-const navItems = document.querySelectorAll('.nav-list__link');
+const navItems = document.querySelectorAll('.nav-list a');
 const submenu = document.querySelectorAll('.nav-sublist');
 const moreLink = document.querySelectorAll('.js-open-text');
 const hiddenText = document.querySelectorAll('.more-text');
 const filterLink = document.querySelectorAll('.filter__list li');
 
 
+function fadeOut(el) {
+  el.style.opacity = 1;
 
+  (function fade() {
+    if ((el.style.opacity -= .1) < 0) {
+      el.style.display = "none";
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
+};
 
+function fadeIn(el, display) {
+  el.style.opacity = 0;
+  el.style.display = display || "block";
 
+  (function fade() {
+    var val = parseFloat(el.style.opacity);
+    if (!((val += .1) > 1)) {
+      el.style.opacity = val;
+      requestAnimationFrame(fade);
+    }
+  })();
+};
 
 function openMenu() {
   menuBtn.classList.add('active');
   menuBtn.innerText = "close";
   nav.classList.add("open");
+  // fadeIn(nav);
   body.style.overflow = 'hidden';
 }
 
@@ -29,6 +51,7 @@ function closeMenu() {
   menuBtn.classList.remove('active');
   menuBtn.innerText = "menu";
   nav.classList.remove("open");
+  // fadeOut(nav);
   navItems.forEach(function (element) {
     element.classList.remove("active");
   });
@@ -124,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sublist.classList.remove("active");
       });
       const sublist = this.nextSibling.nextSibling;
+      console.log(sublist);
       if (sublist != null) {
         sublist.classList.add('active');
       }
@@ -539,16 +563,10 @@ testWebP(function (support) {
 
 $(document).ready(function () {
 
-  if ($('.case-wrapper')) {
+  if ($('.case-wrapper').length > 0) {
     // Create object to store filter for each group
     let buttonFilters = {};
     let buttonFilter = '*';
-  
-    // Create new object for the range filters and set default values
-    // The default values should correspond to the default values from the slider
-
-    // Initialise Isotope
-    // Set the item selector
     const $grid = $('.case-wrapper').isotope({
       itemSelector: '.case',
       layout: 'vertical',
@@ -558,7 +576,7 @@ $(document).ready(function () {
         return $this.is(buttonFilter);
       }
     });
-  var iso = $grid.data('isotope');
+    var iso = $grid.data('isotope');
     var $filterCount = $('#filterResult');
     // Look inside element with .filters class for any clicks on elements with .btn
     $('.filter').on('click', '.filter-btn', function () {

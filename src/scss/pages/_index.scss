@@ -137,6 +137,10 @@
       font-size: 12px;
       font-weight: 500;
 
+      @include d(1199) {
+        margin-bottom: 20px;
+      }
+
       @include d(768) {
         max-width: 33.333%;
       }
@@ -783,7 +787,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    z-index: 999;
+    z-index: 1;
 
     .slider__number {
       color: $white;
@@ -1111,6 +1115,7 @@
     display: flex;
     max-width: 1200px;
     margin: 60px auto;
+
     @include d(575) {
       flex-wrap: wrap;
     }
@@ -1128,6 +1133,7 @@
     padding: 30px 30px 0 30px;
     position: relative;
     z-index: 1;
+
     @include d(1199) {
       padding: 30px 15px 0 15px;
     }
@@ -1135,6 +1141,7 @@
     @include d(767) {
       padding: 30px 10px 0 10px;
     }
+
     @include d(575) {
       max-width: 280px;
       margin: 0 auto;
