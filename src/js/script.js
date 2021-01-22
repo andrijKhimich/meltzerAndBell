@@ -124,8 +124,6 @@ moreLink.forEach(function (link) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
-
   showContent();
 
   menuBtn.addEventListener('click', function () {
@@ -147,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
         sublist.classList.remove("active");
       });
       const sublist = this.nextSibling.nextSibling;
-      console.log(sublist);
       if (sublist != null) {
         sublist.classList.add('active');
       }
@@ -541,7 +538,6 @@ function initCaseSlider() {
   });
 }
 
-
 svg4everybody();
 
 function testWebP(callback) {
@@ -562,10 +558,10 @@ testWebP(function (support) {
 });
 
 $(document).ready(function () {
-
   if ($('.case-wrapper').length > 0) {
     let $filterCount = $('#filterResult');
-    let itemSelector = ".case"; 
+    let itemSelector = ".case";
+    let item = $('.case');
     let $checkboxes = $('.filter-item');
     let $container = $('.case-wrapper').isotope({
       itemSelector: itemSelector
@@ -630,10 +626,9 @@ $(document).ready(function () {
     }
 
     function setPagination() {
-
       let SettingsPagesOnItems = function () {
         let itemsLength = $container.children(itemSelector).length;
-        // console.log(itemsLength);
+
         let pages = Math.ceil(itemsLength / itemsPerPage);
         let item = 1;
         let page = 1;
@@ -650,7 +645,8 @@ $(document).ready(function () {
         filterValue = exclusives.length ? exclusives.join('') : '*';
         // find each child element with current filter values
         $container.children(filterValue).each(function () {
-          // increment page if a new one is needed
+          let itemCount = $container.children(filterValue).length
+          $filterCount.text(itemCount);
           if (item > itemsPerPage) {
             page++;
             item = 1;
@@ -721,17 +717,15 @@ $(document).ready(function () {
       currentFilter = filter;
       setPagination();
       goToPage(1);
-      updateFilterCount();
+      if (iso.filteredItems.length == 0) {
+        $filterCount.text(iso.filteredItems.length);
+
+      }
     });
 
     $('#clear-filters').click(function () {
       clearAll()
     });
-
-    function updateFilterCount() {
-      $filterCount.text(iso.filteredItems.length);
-    }
-     $filterCount.text($container.children(itemSelector).length);
 
     $(window).resize(function () {
       itemsPerPage = defineItemsPerPage();
@@ -740,61 +734,4 @@ $(document).ready(function () {
     });
 
   }
-
-  // if ($('.case-wrapper').length > 0) {
-  //   // Create object to store filter for each group
-  //   let buttonFilters = {};
-  //   let buttonFilter = '*';
-  //   const $grid = $('.case-wrapper').isotope({
-  //     itemSelector: '.case',
-  //     layout: 'vertical',
-  //     // use filter function
-  //     filter: function () {
-  //       let $this = $(this);
-  //       return $this.is(buttonFilter);
-  //     }
-  //   });
-  //   let iso = $grid.data('isotope');
-  //   let $filterCount = $('#filterResult');
-  //   // Look inside element with .filters class for any clicks on elements with .btn
-  //   $('.filter').on('click', '.filter-btn', function () {
-  //     const $this = $(this);
-  //     // Get group key from parent btn-group (e.g. data-filter-group="color")
-  //     const $buttonGroup = $this.parents('.filter__list');
-  //     const filterGroup = $buttonGroup.attr('data-filter-group');
-  //     // set filter for group
-  //     buttonFilters[filterGroup] = $this.attr('data-filter');
-  //     // Combine filters or set the value to * if buttonFilters
-  //     buttonFilter = concatValues(buttonFilters) || '*';
-  //     // Log out current filter to check that it's working when clicked
-  //     // Trigger isotope again to refresh layout
-  //     $grid.isotope();
-  //     updateFilterCount();
-  //   });
-
-  //   // change checked class on btn-filter to toggle which one is active
-  //   $('.filter__list').each(function (i, buttonGroup) {
-  //     const $buttonGroup = $(buttonGroup);
-  //     $buttonGroup.on('click', '.filter-btn', function () {
-  //       $buttonGroup.find('.checked').removeClass('checked');
-  //       $(this).addClass('checked');
-  //     });
-
-  //   });
-
-  //   function updateFilterCount() {
-  //     $filterCount.text(iso.filteredItems.length);
-  //   }
-  //   updateFilterCount();
-  // }
 });
-
-
-// Flatten object by concatting values
-// function concatValues(obj) {
-//   let value = '';
-//   for (let prop in obj) {
-//     value += obj[prop];
-//   }
-//   return value;
-// }
