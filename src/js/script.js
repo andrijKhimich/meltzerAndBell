@@ -31,7 +31,7 @@ function fadeIn(el, display) {
   el.style.display = display || "block";
 
   (function fade() {
-    var val = parseFloat(el.style.opacity);
+    let val = parseFloat(el.style.opacity);
     if (!((val += .1) > 1)) {
       el.style.opacity = val;
       requestAnimationFrame(fade);
@@ -104,7 +104,7 @@ function showContent() {
 }
 
 
-for (var i = 0; i < hiddenText.length; i++) {
+for (let i = 0; i < hiddenText.length; i++) {
   hiddenText[i].style.display = "none"; // depending on what you're doing
 }
 moreLink.forEach(function (link) {
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    for (var i = 0; i < accordionLink.length; i++) {
+    for (let i = 0; i < accordionLink.length; i++) {
       accordionLink[i].addEventListener("click", accordionToggle);
     }
   }
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $('#map')[0] ? initMap() : null;
 
   function initMap() {
-    var mapOptions = {
+    let mapOptions = {
       zoom: 14,
       center: new google.maps.LatLng(26.114650055305212, -80.14133413459079),
       disableDefaultUI: true,
@@ -444,9 +444,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       ]
     };
-    var mapElement = document.getElementById('map')
-    var map = new google.maps.Map(mapElement, mapOptions);
-    var marker = new google.maps.Marker({
+    let mapElement = document.getElementById('map')
+    let map = new google.maps.Map(mapElement, mapOptions);
+    let marker = new google.maps.Marker({
       position: new google.maps.LatLng(26.114611520965816, -80.14121611739628),
       map: map,
       title: 'Meltzer and Bell, P.A',
@@ -461,7 +461,7 @@ function initTestimonialsSlider() {
     if (!slick.$dots) {
       return;
     }
-    var i = (currentSlide ? currentSlide : 0) + 1;
+    let i = (currentSlide ? currentSlide : 0) + 1;
     counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
   });
 
@@ -473,7 +473,7 @@ function initTestimonialsSlider() {
     speed: 800,
     fade: true,
     arrows: true,
-    prevArrow: $('#testimonialsPrev'),
+    preletrow: $('#testimonialsPrev'),
     nextArrow: $('#testimonialsNext'),
     responsive: [{
       breakpoint: 991,
@@ -490,7 +490,7 @@ function initPracticeSlider() {
     if (!slick.$dots) {
       return;
     }
-    var i = (currentSlide ? currentSlide : 0) + 1;
+    let i = (currentSlide ? currentSlide : 0) + 1;
     counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
   });
 
@@ -502,7 +502,7 @@ function initPracticeSlider() {
     speed: 800,
     fade: true,
     arrows: true,
-    prevArrow: $('#ptacticePrev'),
+    preletrow: $('#ptacticePrev'),
     nextArrow: $('#ptacticeNext'),
     responsive: [{
       breakpoint: 575,
@@ -519,7 +519,7 @@ function initCaseSlider() {
     if (!slick.$dots) {
       return;
     }
-    var i = (currentSlide ? currentSlide : 0) + 1;
+    let i = (currentSlide ? currentSlide : 0) + 1;
     counter.innerHTML = '<span class="slider__number">' + i + '</span>' + '/' + (slick.$dots[0].children.length);
   });
 
@@ -530,7 +530,7 @@ function initCaseSlider() {
     infinite: false,
     speed: 1000,
     arrows: true,
-    prevArrow: $('#casePrev'),
+    preletrow: $('#casePrev'),
     nextArrow: $('#caseNext'),
     responsive: [{
       breakpoint: 991,
@@ -545,7 +545,7 @@ function initCaseSlider() {
 svg4everybody();
 
 function testWebP(callback) {
-  var webP = new Image();
+  let webP = new Image();
   webP.onload = webP.onerror = function () {
     callback(webP.height == 2);
   };
@@ -564,59 +564,237 @@ testWebP(function (support) {
 $(document).ready(function () {
 
   if ($('.case-wrapper').length > 0) {
-    // Create object to store filter for each group
-    let buttonFilters = {};
-    let buttonFilter = '*';
-    const $grid = $('.case-wrapper').isotope({
-      itemSelector: '.case',
-      layout: 'vertical',
-      // use filter function
-      filter: function () {
-        var $this = $(this);
-        return $this.is(buttonFilter);
-      }
+    let $filterCount = $('#filterResult');
+    let itemSelector = ".case"; 
+    let $checkboxes = $('.filter-item');
+    let $container = $('.case-wrapper').isotope({
+      itemSelector: itemSelector
     });
-    var iso = $grid.data('isotope');
-    var $filterCount = $('#filterResult');
-    // Look inside element with .filters class for any clicks on elements with .btn
-    $('.filter').on('click', '.filter-btn', function () {
-      const $this = $(this);
-      // Get group key from parent btn-group (e.g. data-filter-group="color")
-      const $buttonGroup = $this.parents('.filter__list');
-      const filterGroup = $buttonGroup.attr('data-filter-group');
-      // set filter for group
-      buttonFilters[filterGroup] = $this.attr('data-filter');
-      // Combine filters or set the value to * if buttonFilters
-      buttonFilter = concatValues(buttonFilters) || '*';
-      // Log out current filter to check that it's working when clicked
-      // Trigger isotope again to refresh layout
-      $grid.isotope();
+    let iso = $container.data('isotope');
+
+    //Ascending order
+    let responsiveIsotope = [
+      [480, 4],
+      [720, 6]
+    ];
+    let itemsPerPageDefault = 5;
+    let itemsPerPage = defineItemsPerPage();
+    let currentNumberPages = 1;
+    let currentPage = 1;
+    let currentFilter = '*';
+    let filterAttribute = 'data-filter';
+    let filterValue = "";
+    let pageAttribute = 'data-page';
+    let pagerClass = 'pagination';
+
+    // update items based on current filters    
+    function changeFilter(selector) {
+      $container.isotope({
+        filter: selector
+      });
+    }
+
+    //grab all checked filters and goto page on fresh isotope output
+    function goToPage(n) {
+      currentPage = n;
+      let selector = itemSelector;
+      let exclusives = [];
+      // for each box checked, add its value and push to array
+      $checkboxes.each(function (i, elem) {
+        if (elem.checked) {
+          selector += (currentFilter != '*') ? '.' + elem.value : '';
+          exclusives.push(selector);
+        }
+      });
+      // smash all values back together for 'and' filtering
+      filterValue = exclusives.length ? exclusives.join('') : '*';
+
+      // add page number to the string of filters
+      let wordPage = currentPage.toString();
+      filterValue += ('.' + wordPage);
+
+      changeFilter(filterValue);
+    }
+
+    // determine page breaks based on window width and preset values
+    function defineItemsPerPage() {
+      let pages = itemsPerPageDefault;
+
+      for (let i = 0; i < responsiveIsotope.length; i++) {
+        if ($(window).width() <= responsiveIsotope[i][0]) {
+          pages = responsiveIsotope[i][1];
+          break;
+        }
+      }
+      return pages;
+    }
+
+    function setPagination() {
+
+      let SettingsPagesOnItems = function () {
+        let itemsLength = $container.children(itemSelector).length;
+        // console.log(itemsLength);
+        let pages = Math.ceil(itemsLength / itemsPerPage);
+        let item = 1;
+        let page = 1;
+        let selector = itemSelector;
+        let exclusives = [];
+        // for each box checked, add its value and push to array
+        $checkboxes.each(function (i, elem) {
+          if (elem.checked) {
+            selector += (currentFilter != '*') ? '.' + elem.value : '';
+            exclusives.push(selector);
+          }
+        });
+        // smash all values back together for 'and' filtering
+        filterValue = exclusives.length ? exclusives.join('') : '*';
+        // find each child element with current filter values
+        $container.children(filterValue).each(function () {
+          // increment page if a new one is needed
+          if (item > itemsPerPage) {
+            page++;
+            item = 1;
+          }
+          // add page number to element as a class
+          wordPage = page.toString();
+
+          let classes = $(this).attr('class').split(' ');
+          let lastClass = classes[classes.length - 1];
+          // last class shorter than 4 will be a page number, if so, grab and replace
+          if (lastClass.length < 4) {
+            $(this).removeClass();
+            classes.pop();
+            classes.push(wordPage);
+            classes = classes.join(' ');
+            $(this).addClass(classes);
+          } else {
+            // if there was no page number, add it
+            $(this).addClass(wordPage);
+          }
+          item++;
+        });
+        currentNumberPages = page;
+      }();
+
+      // create page number navigation
+      let CreatePagers = function () {
+
+        let $isotopePager = ($('.' + pagerClass).length == 0) ? $('<div class="' + pagerClass + '"></div>') : $('.' + pagerClass);
+
+        $isotopePager.html('');
+        if (currentNumberPages > 1) {
+          for (let i = 0; i < currentNumberPages; i++) {
+            let $pager = $('<a href="javascript:void(0);" ' + pageAttribute + '="' + (i + 1) + '"></a>');
+            $pager.html(i + 1);
+
+            $pager.click(function () {
+              let page = $(this).eq(0).attr(pageAttribute);
+              goToPage(page);
+              $pager.removeClass('active');
+              $(".pagination a").not(this).removeClass('active');
+              $(this).addClass('active');
+            });
+            $pager.appendTo($isotopePager);
+          }
+        }
+        $container.after($isotopePager);
+      }();
+    }
+    // remove checks from all boxes and refilter
+    function clearAll() {
+      $checkboxes.each(function (i, elem) {
+        if (elem.checked) {
+          elem.checked = null;
+        }
+      });
+      currentFilter = '*';
+      setPagination();
+      goToPage(1);
+    }
+
+    setPagination();
+    goToPage(1);
+
+    //event handlers
+    $checkboxes.change(function () {
+      let filter = $(this).attr(filterAttribute);
+      currentFilter = filter;
+      setPagination();
+      goToPage(1);
       updateFilterCount();
     });
 
-    // change checked class on btn-filter to toggle which one is active
-    $('.filter__list').each(function (i, buttonGroup) {
-      const $buttonGroup = $(buttonGroup);
-      $buttonGroup.on('click', '.filter-btn', function () {
-        $buttonGroup.find('.checked').removeClass('checked');
-        $(this).addClass('checked');
-      });
-
+    $('#clear-filters').click(function () {
+      clearAll()
     });
 
     function updateFilterCount() {
       $filterCount.text(iso.filteredItems.length);
     }
-    updateFilterCount();
+     $filterCount.text($container.children(itemSelector).length);
+
+    $(window).resize(function () {
+      itemsPerPage = defineItemsPerPage();
+      setPagination();
+      goToPage(1);
+    });
+
   }
+
+  // if ($('.case-wrapper').length > 0) {
+  //   // Create object to store filter for each group
+  //   let buttonFilters = {};
+  //   let buttonFilter = '*';
+  //   const $grid = $('.case-wrapper').isotope({
+  //     itemSelector: '.case',
+  //     layout: 'vertical',
+  //     // use filter function
+  //     filter: function () {
+  //       let $this = $(this);
+  //       return $this.is(buttonFilter);
+  //     }
+  //   });
+  //   let iso = $grid.data('isotope');
+  //   let $filterCount = $('#filterResult');
+  //   // Look inside element with .filters class for any clicks on elements with .btn
+  //   $('.filter').on('click', '.filter-btn', function () {
+  //     const $this = $(this);
+  //     // Get group key from parent btn-group (e.g. data-filter-group="color")
+  //     const $buttonGroup = $this.parents('.filter__list');
+  //     const filterGroup = $buttonGroup.attr('data-filter-group');
+  //     // set filter for group
+  //     buttonFilters[filterGroup] = $this.attr('data-filter');
+  //     // Combine filters or set the value to * if buttonFilters
+  //     buttonFilter = concatValues(buttonFilters) || '*';
+  //     // Log out current filter to check that it's working when clicked
+  //     // Trigger isotope again to refresh layout
+  //     $grid.isotope();
+  //     updateFilterCount();
+  //   });
+
+  //   // change checked class on btn-filter to toggle which one is active
+  //   $('.filter__list').each(function (i, buttonGroup) {
+  //     const $buttonGroup = $(buttonGroup);
+  //     $buttonGroup.on('click', '.filter-btn', function () {
+  //       $buttonGroup.find('.checked').removeClass('checked');
+  //       $(this).addClass('checked');
+  //     });
+
+  //   });
+
+  //   function updateFilterCount() {
+  //     $filterCount.text(iso.filteredItems.length);
+  //   }
+  //   updateFilterCount();
+  // }
 });
 
 
 // Flatten object by concatting values
-function concatValues(obj) {
-  let value = '';
-  for (var prop in obj) {
-    value += obj[prop];
-  }
-  return value;
-}
+// function concatValues(obj) {
+//   let value = '';
+//   for (let prop in obj) {
+//     value += obj[prop];
+//   }
+//   return value;
+// }
