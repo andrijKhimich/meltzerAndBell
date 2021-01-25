@@ -7,6 +7,12 @@
   color: $white;
   z-index: 1000;
   font-family: $fontHeading;
+  transition: background-color, $hover-duration $timing;
+
+  @include d(767) {
+    position: fixed;
+    // background-color: $primary;
+  }
 
   &__row {
     display: flex;
@@ -15,6 +21,10 @@
     padding: 16px 0 14px 0;
     border-bottom: 1px solid rgba($white, .4);
     position: relative;
+
+    @include d(767) {
+      border-bottom: 0;
+    }
   }
 
   &-contact {
@@ -145,7 +155,7 @@
         position: relative;
       }
 
-      & > a {
+      &>a {
         font-size: 35px;
         line-height: 1.5em;
 

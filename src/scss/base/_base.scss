@@ -355,7 +355,7 @@ textarea {
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: $black;
       text-transform: uppercase;
-      opacity: .2;
+      opacity: .4;
       white-space: nowrap;
 
       @include d(1199) {
@@ -554,7 +554,7 @@ textarea {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(#131314, .4);
+    background-color: rgba(#131314, .6);
   }
 
   &__title {

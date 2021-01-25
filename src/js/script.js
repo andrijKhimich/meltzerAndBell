@@ -12,6 +12,8 @@ const submenu = document.querySelectorAll('.nav-sublist');
 const moreLink = document.querySelectorAll('.js-open-text');
 const hiddenText = document.querySelectorAll('.more-text');
 const filterLink = document.querySelectorAll('.filter__list li');
+const header = document.querySelector('.header');
+
 
 
 function fadeOut(el) {
@@ -124,6 +126,22 @@ moreLink.forEach(function (link) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  function fixedHeader() {
+    console.log(window.scrollY);
+    console.log(header);
+
+    if (window.scrollY > 1 && window.innerWidth <= 767) {
+      header.style.backgroundColor = "#8B0C1D";
+    } else {
+      header.style.backgroundColor = "transparent";
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    fixedHeader();
+  });
+
   showContent();
 
   menuBtn.addEventListener('click', function () {
@@ -183,7 +201,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initTestimonialsSlider();
   initPressSlider();
   initCaseSlider();
-  // initBlogSlider();
   initPracticeSlider();
 
 
@@ -470,7 +487,7 @@ function initTestimonialsSlider() {
     speed: 800,
     fade: true,
     arrows: true,
-    preletrow: $('#testimonialsPrev'),
+    prevArrow: $('#testimonialsPrev'),
     nextArrow: $('#testimonialsNext'),
     responsive: [{
       breakpoint: 991,
@@ -499,7 +516,7 @@ function initPracticeSlider() {
     speed: 800,
     fade: true,
     arrows: true,
-    preletrow: $('#ptacticePrev'),
+    prevArrow: $('#ptacticePrev'),
     nextArrow: $('#ptacticeNext'),
     responsive: [{
       breakpoint: 575,
@@ -527,7 +544,7 @@ function initCaseSlider() {
     infinite: false,
     speed: 1000,
     arrows: true,
-    preletrow: $('#casePrev'),
+    prevArrow: $('#casePrev'),
     nextArrow: $('#caseNext'),
     responsive: [{
       breakpoint: 991,
