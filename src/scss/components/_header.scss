@@ -4,10 +4,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  color: $white;
+  color: $black;
+  background-color: rgba($white, .4);
   z-index: 1000;
   font-family: $fontHeading;
   transition: background-color, $hover-duration $timing;
+
+  &_inner {
+    color: $white;
+    background-color: transparent;
+    .menu-btn {
+      color: $white;
+    }
+  }
 
   @include d(767) {
     position: fixed;
@@ -19,12 +28,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 0 14px 0;
-    border-bottom: 1px solid rgba($white, .4);
     position: relative;
-
-    @include d(767) {
-      border-bottom: 0;
-    }
   }
 
   &-contact {
@@ -63,7 +67,7 @@
   &-btn {
     font-size: 18px;
     line-height: 1.22em;
-    color: $white;
+    color: $black;
     background-color: transparent;
     text-transform: uppercase;
     border: none;
@@ -105,7 +109,6 @@
     opacity: 1;
     pointer-events: initial;
 
-    // z-index: 10;
     .nav-list__item {
       pointer-events: initial;
     }

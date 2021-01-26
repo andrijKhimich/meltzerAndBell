@@ -735,3 +735,15 @@ input[type='checkbox'] {
     transition: $hover-duration $timing;
   }
 }
+
+.decor {
+  position: absolute;
+  font-family: $fontHeading;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+  line-height: .63em;
+  white-space: nowrap;
+  letter-spacing: -.24em;
+  opacity: .2;
+}

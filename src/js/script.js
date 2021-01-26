@@ -13,8 +13,9 @@ const moreLink = document.querySelectorAll('.js-open-text');
 const hiddenText = document.querySelectorAll('.more-text');
 const filterLink = document.querySelectorAll('.filter__list li');
 const header = document.querySelector('.header');
-
-
+const innerHeader = document.querySelector('.header_inner');
+const logoImg = document.querySelector('.logo img');
+const logoSource = document.querySelector('.logo source');
 
 function fadeOut(el) {
   el.style.opacity = 1;
@@ -41,11 +42,22 @@ function fadeIn(el, display) {
   })();
 };
 
+function setInnerHeader() {
+  logoImg.setAttribute('src', logoWhiteUrl);
+  logoSource.setAttribute('srcset', logoWhiteUrl);
+  header.classList.add("header_inner");
+}
+
+function setHomeHeader() {
+  logoImg.setAttribute('src', logoBlackUrl);
+  logoSource.setAttribute('srcset', logoBlackUrl);
+  header.classList.remove("header_inner");
+}
+
 function openMenu() {
   menuBtn.classList.add('active');
   menuBtn.innerText = "close";
   nav.classList.add("open");
-  // fadeIn(nav);
   body.style.overflow = 'hidden';
 }
 
@@ -53,7 +65,6 @@ function closeMenu() {
   menuBtn.classList.remove('active');
   menuBtn.innerText = "menu";
   nav.classList.remove("open");
-  // fadeOut(nav);
   navItems.forEach(function (element) {
     element.classList.remove("active");
   });
@@ -124,18 +135,22 @@ moreLink.forEach(function (link) {
   });
 })
 
+function fixedHeader() {
+  if (window.scrollY > 1 && window.innerWidth <= 767) {
+    header.style.backgroundColor = "#ffffff";
+    innerHeader.style.backgroundColor = "#8B0C1D";
+  } else {
+    header.style.backgroundColor = "rgba(#fff, .4)";
+    innerHeader.style.backgroundColor = "transparent";
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  function fixedHeader() {
-    console.log(window.scrollY);
-    console.log(header);
-
-    if (window.scrollY > 1 && window.innerWidth <= 767) {
-      header.style.backgroundColor = "#8B0C1D";
-    } else {
-      header.style.backgroundColor = "transparent";
-    }
+  if (innerHeader) {
+    setInnerHeader();
+  } else {
+    setHomeHeader();
   }
 
   window.addEventListener('scroll', function (e) {
