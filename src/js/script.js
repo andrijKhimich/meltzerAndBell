@@ -13,9 +13,10 @@ const moreLink = document.querySelectorAll('.js-open-text');
 const hiddenText = document.querySelectorAll('.more-text');
 const filterLink = document.querySelectorAll('.filter__list li');
 const header = document.querySelector('.header');
+const homeHeader = document.querySelector('.header_home');
 const innerHeader = document.querySelector('.header_inner');
-const logoImg = document.querySelector('.logo img');
-const logoSource = document.querySelector('.logo source');
+// const logoImg = document.querySelector('.logo img');
+// const logoSource = document.querySelector('.logo source');
 
 function fadeOut(el) {
   el.style.opacity = 1;
@@ -42,17 +43,17 @@ function fadeIn(el, display) {
   })();
 };
 
-function setInnerHeader() {
-  logoImg.setAttribute('src', logoWhiteUrl);
-  logoSource.setAttribute('srcset', logoWhiteUrl);
-  header.classList.add("header_inner");
-}
+// function setInnerHeader() {
+//   logoImg.setAttribute('src', logoWhiteUrl);
+//   logoSource.setAttribute('srcset', logoWhiteUrl);
+//   header.classList.add("header_inner");
+// }
 
-function setHomeHeader() {
-  logoImg.setAttribute('src', logoBlackUrl);
-  logoSource.setAttribute('srcset', logoBlackUrl);
-  header.classList.remove("header_inner");
-}
+// function setHomeHeader() {
+//   logoImg.setAttribute('src', logoBlackUrl);
+//   logoSource.setAttribute('srcset', logoBlackUrl);
+//   header.classList.remove("header_inner");
+// }
 
 function openMenu() {
   menuBtn.classList.add('active');
@@ -135,27 +136,39 @@ moreLink.forEach(function (link) {
   });
 })
 
-function fixedHeader() {
+function setHomeFixedHeader() {
+
   if (window.scrollY > 1 && window.innerWidth <= 767) {
-    header.style.backgroundColor = "#ffffff";
+    homeHeader.style.backgroundColor = "#ffffff";
+  } else {
+    homeHeader.style.backgroundColor = "rgba(#fff, .4)";
+  }
+}
+
+function setInnerFixedHeader() {
+  if (window.scrollY > 1 && window.innerWidth <= 767) {
     innerHeader.style.backgroundColor = "#8B0C1D";
   } else {
-    header.style.backgroundColor = "rgba(#fff, .4)";
     innerHeader.style.backgroundColor = "transparent";
   }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  if (innerHeader) {
-    setInnerHeader();
-  } else {
-    setHomeHeader();
-  }
-
   window.addEventListener('scroll', function (e) {
-    fixedHeader();
+    if (homeHeader) {
+      setHomeFixedHeader();
+    }
+    if (innerHeader) {
+      setInnerFixedHeader();
+    }
   });
+
+  // if (innerHeader) {
+  //   setInnerHeader();
+  // } else {
+  //   setHomeHeader();
+  // }
 
   showContent();
 
